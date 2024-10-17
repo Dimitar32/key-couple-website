@@ -11,9 +11,9 @@ import './App.css';
 function App() {
   const [cartItems, setCartItems] = useState([]);
 
-  const addToCart = (product) => {
-    setCartItems([...cartItems, product]);
-  };
+  // const addToCart = (product) => {
+  //   setCartItems([...cartItems, product]);
+  // };
 
   const sendOrder = () => {
     console.log('Поръчката е изпратена!', cartItems);
