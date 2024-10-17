@@ -117,6 +117,10 @@ h3, p {
         height: auto;
     }
 
+    .product-card:hover {
+        text-decoration: underline;
+    }
+
     .products-title {
         font-size: 20px;
     }

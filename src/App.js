@@ -22,15 +22,17 @@ function App() {
 
   return (
     <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/faq" element={<FAQ />} />
-        <Route path="/product/:id" element={<ProductDetails />} />
-        {/* <Route path="/product/:id" element={<ProductDetails addToCart={addToCart} />} /> */}
-        <Route path="/cart" element={<Cart cartItems={cartItems} sendOrder={sendOrder} />} />
-      </Routes>
-      <Footer />
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
+          {/* <Route path="/product/:id" element={<ProductDetails addToCart={addToCart} />} /> */}
+          <Route path="/cart" element={<Cart cartItems={cartItems} sendOrder={sendOrder} />} />
+        </Routes>
+        <Footer />
+      </div>
     </Router>
   );
 }
