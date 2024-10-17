@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import emailjs from 'emailjs-com';
 import './ProductDetails.css';
@@ -7,6 +7,7 @@ import Ariel from '../Products/Ariel.png';
 import Shrek from '../Products/Shrek.png';
 import Rapunzel from '../Products/Rapunzel.png';
 import LionKing from '../Products/Lion King.png';
+import { CartContext } from '../contexts/CartContext'; 
 
 const products = [
     { id: 1, name: 'Ерик и Ариел', price: '25.99 лв', imageUrl: Ariel, description: 'Красив ключодържател с героите Ерик и Ариел.' },
@@ -19,15 +20,14 @@ const ProductDetails = () => {
     const { id } = useParams();
     const product = products.find(p => p.id === parseInt(id));
     
-    // Добавяме state за модала
     const [showModal, setShowModal] = useState(false);
 
     const handleOrderClick = () => {
-        setShowModal(true); // Показваме модала при натискане на бутона
+        setShowModal(true); 
     };
 
     const handleCloseModal = () => {
-        setShowModal(false); // Затваряме модала
+        setShowModal(false); 
     };
     const [formData, setFormData] = useState({
         fullName: '',
@@ -37,9 +37,7 @@ const ProductDetails = () => {
         postalCode: '',
         country: '',
         name: product.name,
-        // quantityAriel: 0,
         quantity: 0,
-        // quantityRapunzel: 0,
         additionalInfo: ''
     });
 
@@ -54,7 +52,6 @@ const ProductDetails = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Изпращане на имейла чрез EmailJS
         emailjs.send('service_b06m24g', 'template_mk02aun', formData, 'mjkXxA3GKaz2EgF9X')
             .then((response) => {
                 console.log('SUCCESS!', response.status, response.text);
@@ -65,7 +62,6 @@ const ProductDetails = () => {
                 alert('Грешка при изпращането на поръчката.');
             });
 
-        // Занули формата след успешното изпращане
         setFormData({
             fullName: '',
             phone: '',
@@ -74,12 +70,12 @@ const ProductDetails = () => {
             postalCode: '',
             country: '',
             name: product.name,
-            // quantityAriel: 0,
             quantity: 0,
-            // quantityRapunzel: 0,
             additionalInfo: ''
         });
     };
+
+    const { addToCart } = useContext(CartContext); 
 
     if (!product) {
         return <h2>Продуктът не е намерен</h2>;
@@ -92,7 +88,7 @@ const ProductDetails = () => {
                 <h2>{product.name}</h2>
                 <p className="product-description">{product.description}</p>
                 <p className="product-price">Цена: {product.price}</p>
-                <button className="order-button">Добави в количката</button>
+                <button className="order-button" onClick={() => addToCart(product)}>Добави в количката</button>
                 <button className="order-button" onClick={handleOrderClick}>Бърза поръчка</button>
             </div>
 
