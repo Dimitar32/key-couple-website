@@ -10,7 +10,7 @@ const Header = () => {
             <nav>
                 <Link to="/">Начало</Link>
                 <Link to="/faq">Често задавани въпроси</Link>
-                <Link to="/cart">Количка</Link>
+                {/* <Link to="/cart">Количка</Link> */}
             </nav>
         </header>
     );

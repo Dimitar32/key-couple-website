@@ -1,64 +1,105 @@
-.cart-container {
-    max-width: 800px;
-    margin: 0 auto;
+/* Бутон за отваряне на количката */
+.cart-toggle-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.cart-toggle-button:hover {
+    background-color: #218838;
+}
+
+/* Плъзгащият се прозорец за количката (sidebar) */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-in-out;
+    z-index: 999;
     padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    padding-top: 15%;
 }
 
-.cart-container h2 {
+/* Количката е напълно видима, когато е отворена */
+.cart-sidebar.open {
+    transform: translateX(0);
+}
+
+/* Количката е скрита частично (само стрелката се вижда), когато е затворена */
+.cart-sidebar.closed {
+    transform: translateX(260px); /* Плъзга количката частично извън екрана */
+    width: 40px;
+    overflow: hidden; /* Скриваме съдържанието */
+}
+
+/* Стил за заглавието на количката и бутон за затваряне */
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-header h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.close-cart {
+    background: none;
+    border: none;
     font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
+    cursor: pointer;
 }
 
-.cart-container ul {
+/* Съдържание на количката */
+.cart-content ul {
     list-style-type: none;
     padding: 0;
 }
 
-.cart-container li {
+.cart-content ul li {
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid #ddd;
 }
 
-.cart-container li:last-child {
-    border-bottom: none;
-}
-
-.cart-container li button {
-    background-color: #ff4d4d;
+/* Бутон за завършване на поръчката */
+.checkout-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #28a745;
     color: white;
     border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.cart-container li button:hover {
-    background-color: #ff3333;
-}
-
-.cart-container li span {
-    font-size: 16px;
-    color: #333;
-}
-
-.cart-container .cart-total {
     font-size: 18px;
-    font-weight: bold;
-    text-align: right;
+    cursor: pointer;
+    border-radius: 5px;
     margin-top: 20px;
 }
 
-.cart-container .cart-empty {
-    text-align: center;
-    font-size: 18px;
-    color: #666;
+.checkout-button:hover {
+    background-color: #218838;
+}
+
+/* Оверлей за затъмняване на страницата */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
 }
