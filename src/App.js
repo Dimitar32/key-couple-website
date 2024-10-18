@@ -16,10 +16,10 @@ function App() {
   //   setCartItems([...cartItems, product]);
   // };
 
-  const sendOrder = () => {
-    console.log('Поръчката е изпратена!', cartItems);
-    setCartItems([]);
-  };
+  // const sendOrder = () => {
+  //   console.log('Поръчката е изпратена!', cartItems);
+  //   setCartItems([]);
+  // };
 
   return (
     <CartProvider>
