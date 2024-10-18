@@ -4,7 +4,7 @@
     top: 20px;
     right: 20px;
     padding: 10px 20px;
-    background-color: #28a745;
+    background-color: #f77fbe;
     color: white;
     border: none;
     border-radius: 5px;
@@ -13,7 +13,7 @@
 }
 
 .cart-toggle-button:hover {
-    background-color: #218838;
+    background-color: #e91e63;
 }
 
 /* Плъзгащият се прозорец за количката (sidebar) */
@@ -80,8 +80,9 @@
 .checkout-button {
     width: 100%;
     padding: 15px;
-    background-color: #28a745;
+    /* background-color: #28a745; */
     color: white;
+    background-color: #f77fbe;
     border: none;
     font-size: 18px;
     cursor: pointer;
@@ -90,7 +91,8 @@
 }
 
 .checkout-button:hover {
-    background-color: #218838;
+    /* background-color: #218838; */
+    background-color: #e91e63;
 }
 
 /* Оверлей за затъмняване на страницата */
@@ -103,3 +105,4 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 998;
 }
+

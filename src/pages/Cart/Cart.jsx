@@ -168,6 +168,7 @@
 
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../contexts/CartContext';
+import { useNavigate } from 'react-router-dom';
 import './Cart.css';
 
 const Cart = () => {
@@ -177,12 +178,21 @@ const Cart = () => {
     const handleCartToggle = () => {
         setIsOpen(!isOpen); // Превключване между отворена и затворена количка
     };
-
+    const navigate = useNavigate();
+    const handleCheckout = () => {
+        setIsOpen(false);
+        navigate('/order');
+    };
+    
     return (
         <>
             <button className="cart-toggle-button" onClick={handleCartToggle}>
-                {isOpen ? 'Затвори количката' : 'Отвори количката'} ({cartItems.length})
+                <i className="fas fa-shopping-cart"></i> {/* Икона за количка */}
+                <span className="cart-count">({cartItems.length})</span> {/* Брояч на продуктите */}
             </button>
+            {/* <button className="cart-toggle-button" onClick={handleCartToggle}>
+                {isOpen ? 'Затвори количката' : 'Отвори количката'} ({cartItems.length})
+            </button> */}
 
             <div className={`cart-sidebar ${isOpen ? 'open' : 'closed'}`}>
                 <div className="cart-header">
@@ -206,7 +216,7 @@ const Cart = () => {
                     )}
                 </div>
                 {cartItems.length > 0 && (
-                    <button className="checkout-button">Поръчай</button>
+                    <button className="checkout-button" onClick={handleCheckout}>Поръчай</button>
                 )}
             </div>
 
