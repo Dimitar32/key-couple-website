@@ -183,12 +183,14 @@ const Cart = () => {
         setIsOpen(false);
         navigate('/order');
     };
-    
+
     return (
         <>
             <button className="cart-toggle-button" onClick={handleCartToggle}>
                 <i className="fas fa-shopping-cart"></i> {/* Икона за количка */}
-                <span className="cart-count">({cartItems.length})</span> {/* Брояч на продуктите */}
+                <span className="cart-count">{cartItems.reduce((total, item) => total + item.quantity, 0)}
+                    
+                    </span> {/* Брояч на продуктите */}
             </button>
             {/* <button className="cart-toggle-button" onClick={handleCartToggle}>
                 {isOpen ? 'Затвори количката' : 'Отвори количката'} ({cartItems.length})

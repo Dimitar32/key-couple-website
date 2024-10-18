@@ -96,7 +96,7 @@ const ProductDetails = () => {
             {showModal && (
                 <div className="modal">
                     <div className="modal-content">
-                        <span className="close" onClick={handleCloseModal}>&times;</span>
+                        <span className="close" onClick={handleCloseModal}> &times;{/*times;*/}</span>
                         {/* <h2>Попълни данните за поръчка</h2> */}
                         {/* <form className="order-form">
                             <label>

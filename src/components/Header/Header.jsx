@@ -8,7 +8,7 @@ const Header = () => {
             <h1>KeyCouple{/*Disney Keychains*/}</h1>
             {/*<h1><a href="#general-info" >Disney Keychains</a></h1>*/}
             <nav>
-                <Link to="/">Начало</Link>
+                <Link to="/">Продукти</Link>
                 <Link to="/faq">Често задавани въпроси</Link>
                 {/* <Link to="/cart">Количка</Link> */}
             </nav>
