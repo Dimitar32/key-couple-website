@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -10,7 +10,7 @@ import { CartProvider } from './pages/contexts/CartContext'; // Импортир
 import './App.css';
 
 function App() {
-  const [cartItems, setCartItems] = useState([]);
+  // const [cartItems, setCartItems] = useState([]);
 
   // const addToCart = (product) => {
   //   setCartItems([...cartItems, product]);
