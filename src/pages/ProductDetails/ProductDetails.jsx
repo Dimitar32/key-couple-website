@@ -19,7 +19,12 @@ const products = [
 const ProductDetails = () => {
     const { id } = useParams();
     const product = products.find(p => p.id === parseInt(id));
-    
+    const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
+
+    const toggleDescription = () => {
+        setIsDescriptionVisible(!isDescriptionVisible);
+    };
+
     const [showModal, setShowModal] = useState(false);
 
     const handleOrderClick = () => {
@@ -29,6 +34,7 @@ const ProductDetails = () => {
     const handleCloseModal = () => {
         setShowModal(false); 
     };
+
     const [formData, setFormData] = useState({
         fullName: '',
         phone: '',
@@ -83,10 +89,15 @@ const ProductDetails = () => {
 
     return (
         <section id="products" className="product-details-section">
+            <h2>{product.name}</h2>
             <img src={product.imageUrl} alt={product.name} className="product-image" />
             <div className="product-details">
-                <h2>{product.name}</h2>
-                <p className="product-description">{product.description}</p>
+                <button className="description-toggle" onClick={toggleDescription}>
+                    {isDescriptionVisible ? 'Скрий описание' : 'Покажи описание'}
+                </button>
+                {isDescriptionVisible && <p className="product-description">{product.description}</p>}
+
+                {/* <p className="product-description">{product.description}</p> */}
                 <p className="product-price">Цена: {product.price}</p>
                 <button className="order-button" onClick={() => addToCart(product)}>Добави в количката</button>
                 <button className="order-button" onClick={handleOrderClick}>Бърза поръчка</button>
