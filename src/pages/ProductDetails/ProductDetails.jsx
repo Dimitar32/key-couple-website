@@ -10,20 +10,24 @@ import LionKing from '../Products/Lion King.png';
 import { CartContext } from '../contexts/CartContext'; 
 
 const products = [
-    { id: 1, name: 'Ерик и Ариел', price: '25.99 лв', imageUrl: Ariel, description: 'Красив ключодържател с героите Ерик и Ариел.' },
-    { id: 2, name: 'Шрек и Фиона', price: '25.99 лв', imageUrl: Shrek, description: 'Забавен ключодържател с Шрек и Фиона.' },
-    { id: 3, name: 'Рапунцел и Флин', price: '25.99 лв', imageUrl: Rapunzel, description: 'Романтичен ключодържател с Рапунцел и Флин.' },
-    { id: 4, name: 'Нала и Симба', price: '25.99 лв', imageUrl: LionKing, description: 'Ключодържател с Нала и Симба, героите от "Цар Лъв".' }
+    { id: 1, name: 'Ерик и Ариел', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Ariel, description: 'Красив ключодържател с героите Ерик и Ариел.' },
+    { id: 2, name: 'Шрек и Фиона', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Shrek, description: 'Забавен ключодържател с Шрек и Фиона.' },
+    { id: 3, name: 'Рапунцел и Флин', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Rapunzel, description: 'Романтичен ключодържател с Рапунцел и Флин.' },
+    { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: LionKing, description: 'Ключодържател с Нала и Симба, героите от "Цар Лъв".' }
 ];
 
 const ProductDetails = () => {
     const { id } = useParams();
     const product = products.find(p => p.id === parseInt(id));
-    const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
+    // const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
+    
+    const [isAdded, setIsAdded] = useState(false);
+    const [isOrdered, setIsOrdered] = useState(false);
+    
 
-    const toggleDescription = () => {
-        setIsDescriptionVisible(!isDescriptionVisible);
-    };
+    // const toggleDescription = () => {
+    //     setIsDescriptionVisible(!isDescriptionVisible);
+    // };
 
     const [showModal, setShowModal] = useState(false);
 
@@ -83,6 +87,28 @@ const ProductDetails = () => {
 
     const { addToCart } = useContext(CartContext); 
 
+    const handleSubmitFastOrder = () =>{
+        setIsOrdered(true);
+
+        // Автоматично скриване на съобщението след 3 секунди
+        setTimeout(() => {
+            setIsOrdered(false);
+        }, 3000);
+    }
+
+    // Функция за добавяне в количката и показване на съобщението
+    const handleAddToCart = (product) => {
+        addToCart(product); // Извиква съществуващата функция за добавяне в количката
+
+        // Показване на съобщението
+        setIsAdded(true);
+
+        // Автоматично скриване на съобщението след 1.5 секунди
+        setTimeout(() => {
+            setIsAdded(false);
+        }, 1500);
+    };
+
     if (!product) {
         return <h2>Продуктът не е намерен</h2>;
     }
@@ -92,17 +118,42 @@ const ProductDetails = () => {
             <h2>{product.name}</h2>
             <img src={product.imageUrl} alt={product.name} className="product-image" />
             <div className="product-details">
-                <button className="description-toggle" onClick={toggleDescription}>
+                {/* <button className="description-toggle" onClick={toggleDescription}>
                     {isDescriptionVisible ? 'Скрий описание' : 'Покажи описание'}
                 </button>
-                {isDescriptionVisible && <p className="product-description">{product.description}</p>}
+                {isDescriptionVisible && <p className="product-description">{product.description}</p>} */}
 
                 {/* <p className="product-description">{product.description}</p> */}
+                <p className="old-price">Стара Цена: {product.oldPrice}</p>
                 <p className="product-price">Цена: {product.price}</p>
-                <button className="order-button" onClick={() => addToCart(product)}>Добави в количката</button>
-                <button className="order-button" onClick={handleOrderClick}>Бърза поръчка</button>
+                <div className="product-buttons">
+                    <button className="order-button" onClick={() => handleAddToCart(product)}>Добави в количката</button>
+                    <button className="order-button" onClick={handleOrderClick}>Бърза поръчка</button>
+                </div>
+
+
             </div>
 
+            {/* Показване на съобщението, когато е добавено в количката */}
+            {isAdded && (
+                <div className="modal">
+                    <div className="modal-content">
+                    
+                        
+                        <p>
+                            Успешно добавено в количката!
+                        </p>
+                    </div>
+                </div>
+            )}
+
+             {/* Показване на съобщението, когато е добавено в количката */}
+             {isOrdered && (
+                <div className="cart-message">
+                    Благодарим за поръчката!
+                </div>
+            )}
+            
             {/* Модал */}
             {showModal && (
                 <div className="modal">
@@ -176,7 +227,7 @@ const ProductDetails = () => {
                                     required
                                 />
                             </label>
-                            <button type="submit">Поръчай</button>
+                            <button type="submit" onClick={() => handleSubmitFastOrder(product)}>Поръчай</button>
                         </form>
                     </div>
                 </div>

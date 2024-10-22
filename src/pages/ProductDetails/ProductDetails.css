@@ -58,6 +58,18 @@ p{
     color: #e91e63;
     margin-bottom: 20px;
 }
+.product-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* разстояние между бутоните */
+}
+
+.order-button {
+    width: auto; /* Може да промениш ширината по желание */
+    padding: 10px 20px;
+}
 
 .order-button {
     background-color: #f77fbe;
@@ -151,8 +163,11 @@ p{
     border-radius: 8px;
     width: 300px;
     text-align: center;
+    color:#f77fbe;
+    /* font-size: 30px; */
   }
   
+
   .close {
     position: absolute;
     top: 10px;
@@ -235,7 +250,42 @@ form {
         color: white;
     }
 
+    .cart-message {
+        background-color: #e91e63;
+        color: white;
+        padding: 10px 20px;
+        /* position: fixed; */
+        top: 10%;
+        right: 10%;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+        animation: fadeInOut 3s ease-in-out;
+        /* padding-top: 30%; */
+    }
+    
+    /* Анимация за постепенно показване и скриване */
+    @keyframes fadeInOut {
+        0% { opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+   
+ 
+.old-price {
+    font-size: 14px;
+    color: #999;
+    text-decoration: line-through;
+    margin: 5px 0;
+}
 
+.new-price {
+    font-size: 18px;
+    color: #f77fbe;
+    font-weight: bold;
+}
+   
 
 /* Mobile-friendly медийни заявки */
 @media (max-width: 768px) {
