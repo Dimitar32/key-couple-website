@@ -20,9 +20,11 @@ const ProductDetails = () => {
     const { id } = useParams();
     const product = products.find(p => p.id === parseInt(id));
     // const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
+    const [quantity, setQuantity] = useState(1); // Бройката започва от 1
     
     const [isAdded, setIsAdded] = useState(false);
     const [isOrdered, setIsOrdered] = useState(false);
+    const [cantAddZero, cantAddZeroToCart] = useState(false);
     
 
     // const toggleDescription = () => {
@@ -95,16 +97,28 @@ const ProductDetails = () => {
             setIsOrdered(false);
         }, 3000);
     }
+    // Функция за промяна на бройката
+    const handleQuantityChange = (e) => {
+        const value = parseInt(e.target.value, 10);
+        // if (value > 0) {
+            setQuantity(value); // Актуализиране на бройката само ако е по-голямо от 0
+        // }
+    };
 
     // Функция за добавяне в количката и показване на съобщението
-    const handleAddToCart = (product) => {
-        addToCart(product); // Извиква съществуващата функция за добавяне в количката
+    const handleAddToCart = (product, quantity) => {
+        addToCart(product, quantity); // Извиква съществуващата функция за добавяне в количката
 
-        // Показване на съобщението
-        setIsAdded(true);
+        if (quantity > 0) {
+            // Показване на съобщението
+            setIsAdded(true);
+        } else if (quantity === 0) {
+            cantAddZeroToCart(true);
+        }
 
         // Автоматично скриване на съобщението след 1.5 секунди
         setTimeout(() => {
+            cantAddZeroToCart(false);
             setIsAdded(false);
         }, 1500);
     };
@@ -115,9 +129,9 @@ const ProductDetails = () => {
 
     return (
         <section id="products" className="product-details-section">
-            <h2>{product.name}</h2>
             <img src={product.imageUrl} alt={product.name} className="product-image" />
             <div className="product-details">
+            <h2>{product.name}</h2>
                 {/* <button className="description-toggle" onClick={toggleDescription}>
                     {isDescriptionVisible ? 'Скрий описание' : 'Покажи описание'}
                 </button>
@@ -126,8 +140,21 @@ const ProductDetails = () => {
                 {/* <p className="product-description">{product.description}</p> */}
                 <p className="old-price">Стара Цена: {product.oldPrice}</p>
                 <p className="product-price">Цена: {product.price}</p>
+
+                {/* Поле за избор на бройка */}
+                <label>
+                    {/* Бройка: */}
+                    <input className="product-quantity-input"
+                        type="number"
+                        value={quantity}
+                        onChange={handleQuantityChange}
+                        min="1"
+                        style={{ width: '50px', marginLeft: '10px' }} // Леко стилизиране
+                    />
+                </label>
+
                 <div className="product-buttons">
-                    <button className="order-button" onClick={() => handleAddToCart(product)}>Добави в количката</button>
+                    <button className="order-button" onClick={() => handleAddToCart(product, quantity)}>Добави в количката</button>
                     <button className="order-button" onClick={handleOrderClick}>Бърза поръчка</button>
                 </div>
 
@@ -138,10 +165,19 @@ const ProductDetails = () => {
             {isAdded && (
                 <div className="modal">
                     <div className="modal-content">
-                    
-                        
                         <p>
                             Успешно добавено в количката!
+                        </p>
+                    </div>
+                </div>
+            )}
+
+            {/* Показване на съобщението, когато е добавено в количката */}
+            {cantAddZero && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <p>
+                            Не може да добавяте 0 продукта в количката!
                         </p>
                     </div>
                 </div>
