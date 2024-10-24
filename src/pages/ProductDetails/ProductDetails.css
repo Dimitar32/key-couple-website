@@ -291,6 +291,22 @@ form {
     font-weight: bold;
 }
    
+.product-quantity-input {
+    width: 60px;
+    padding: 10px; /* Увеличаваме вътрешното разстояние */
+    font-size: 18px; /* Увеличаваме размера на шрифта */
+    border: 1px solid #ccc; /* Ограда */
+    border-radius: 5px; /* Заобляме ръбовете */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Леко сянка */
+    text-align: center; /* Текстът е центриран в полето */
+    outline: none; /* Премахваме синята рамка при фокус */
+    transition: border-color 0.3s ease; /* Плавен преход за ефектите при фокус */
+}
+
+.product-quantity-input:focus {
+    border-color: #e91e63; /* Променяме цвета на границата при фокус */
+}
+
 /* Mobile-friendly медийни заявки */
 @media (max-width: 1256px) {
     .product-details-section {

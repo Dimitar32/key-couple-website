@@ -7,13 +7,17 @@ import Ariel from '../Products/Ariel.png';
 import Shrek from '../Products/Shrek.png';
 import Rapunzel from '../Products/Rapunzel.png';
 import LionKing from '../Products/Lion King.png';
+import Bunny from '../Products/Bunny.png';
+import Bella from '../Products/Bella.png';
 import { CartContext } from '../contexts/CartContext'; 
 
 const products = [
     { id: 1, name: 'Ерик и Ариел', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Ariel, description: 'Красив ключодържател с героите Ерик и Ариел.' },
     { id: 2, name: 'Шрек и Фиона', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Shrek, description: 'Забавен ключодържател с Шрек и Фиона.' },
     { id: 3, name: 'Рапунцел и Флин', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Rapunzel, description: 'Романтичен ключодържател с Рапунцел и Флин.' },
-    { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: LionKing, description: 'Ключодържател с Нала и Симба, героите от "Цар Лъв".' }
+    { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: LionKing, description: 'Ключодържател с Нала и Симба, героите от "Цар Лъв".' },
+    { id: 5, name: 'Бъгс и Лола', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Bunny, description: 'Бъгс и Лола ключодържател.' },
+    { id: 6, name: 'Бел и Звяр', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Bella, description: 'Бела и Звяра ключодръжател.' }
 ];
 
 const ProductDetails = () => {
