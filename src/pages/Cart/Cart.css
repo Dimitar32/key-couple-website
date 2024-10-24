@@ -29,7 +29,7 @@
     z-index: 999;
     padding: 20px;
     overflow-y: auto;
-    padding-top: 15%;
+    padding-top: 10%;
 }
 
 /* Количката е напълно видима, когато е отворена */
@@ -106,3 +106,11 @@
     z-index: 998;
 }
 
+/* Mobile-friendly медийни заявки */
+@media (max-width: 768px) {
+    
+    .cart-sidebar {
+        padding-top: 28%;
+    }
+
+}

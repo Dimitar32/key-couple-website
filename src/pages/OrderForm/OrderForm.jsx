@@ -9,6 +9,7 @@ const OrderForm = () => {
         lastName: '',
         phone: '',
         address: '',
+        city: ''
     });
 
     const handleChange = (e) => {
@@ -30,8 +31,9 @@ const OrderForm = () => {
     };
 
     return (
+        // <div className='out-container'>
         <div className="order-form-container">
-            <h2>Завършете поръчката</h2>
+        <h2>Завършете поръчката</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Име</label>
@@ -64,11 +66,21 @@ const OrderForm = () => {
                     />
                 </div>
                 <div className="form-group">
-                    <label>Адрес</label>
+                    <label>Офис на Еконт</label>
                     <input 
                         type="text" 
                         name="address" 
                         value={formData.address} 
+                        onChange={handleChange} 
+                        required 
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Град</label>
+                    <input 
+                        type="text" 
+                        name="city" 
+                        value={formData.city} 
                         onChange={handleChange} 
                         required 
                     />
@@ -78,7 +90,7 @@ const OrderForm = () => {
                 <div className="cart-items">
                     <h3>Вашата количка</h3>
                     {cartItems.length === 0 ? (
-                        <p>Количката е празна.</p>
+                        <p>Количката е празна!!!</p>
                     ) : (
                         <ul>
                             {cartItems.map(item => (
@@ -96,10 +108,11 @@ const OrderForm = () => {
                         </ul>
                     )}
                 </div>
-
+                
                 <button type="submit" className="submit-button">Изпрати поръчка</button>
             </form>
         </div>
+        // </div>
     );
 };
 
