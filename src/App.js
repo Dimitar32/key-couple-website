@@ -10,6 +10,7 @@ import ProductDetails from './pages/ProductDetails/ProductDetails';
 import { CartProvider } from './pages/contexts/CartContext'; // Импортирай провайдъра
 import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import ScrollTop from './ScrollTop.js';
 
 function App() {
   // const [cartItems, setCartItems] = useState([]);
@@ -27,6 +28,7 @@ function App() {
     <CartProvider>
       <Router>
         <div className="App">
+          <ScrollTop />
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
