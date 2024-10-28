@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import emailjs from 'emailjs-com';
 import { CartContext } from '../contexts/CartContext'; // Импортирай контекста за количката
 import './OrderForm.css'; // Стилове за формата
 
@@ -9,8 +10,21 @@ const OrderForm = () => {
         lastName: '',
         phone: '',
         address: '',
-        city: ''
+        city: '',
+        order: ''
     });
+
+    // const [formData, setFormData] = useState({
+    //     fullName: '',
+    //     phone: '',
+    //     address: '',
+    //     city: '',
+    //     postalCode: '',
+    //     country: '',
+    //     name: product.name,
+    //     quantity: 0,
+    //     additionalInfo: ''
+    // });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -20,11 +34,41 @@ const OrderForm = () => {
         });
     };
 
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     // Тук можеш да обработиш данните, например да ги изпратиш на API
+    //     console.log('Поръчката е изпратена:', formData, cartItems);
+    // };
+
+    
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Тук можеш да обработиш данните, например да ги изпратиш на API
-        console.log('Поръчката е изпратена:', formData, cartItems);
+
+        const order = cartItems.map(item =>  `Name: ${item.name}, Quantity: ${item.quantity}`)
+        .join('\n');
+        
+        formData.order = order;
+
+        emailjs.send('service_b06m24g', 'template_mk02aun', formData, 'mjkXxA3GKaz2EgF9X')
+            .then((response) => {
+                console.log('SUCCESS!', response.status, response.text);
+                alert('Вашата поръчка е изпратена успешно!');
+            })
+            .catch((err) => {
+                console.error('FAILED...', err);
+                alert('Грешка при изпращането на поръчката.');
+            });
+
+        setFormData({
+            firstName: '',
+            lastName: '',
+            phone: '',
+            address: '',
+            city: '',
+            order: ''
+        });
     };
+
 
     const handleRemove = (id) => {
         removeFromCart(id); // Премахваме продукт от количката

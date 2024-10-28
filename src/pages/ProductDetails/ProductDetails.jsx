@@ -46,13 +46,14 @@ const ProductDetails = () => {
     };
 
     const [formData, setFormData] = useState({
-        fullName: '',
+        firstName: '',
+        lastName: '',
         phone: '',
         address: '',
         city: '',
         postalCode: '',
         country: '',
-        name: product.name,
+        order: product.name,
         quantity: 0,
         additionalInfo: ''
     });
@@ -79,13 +80,14 @@ const ProductDetails = () => {
             });
 
         setFormData({
-            fullName: '',
+            firstName: '',
+            lastName: '',
             phone: '',
             address: '',
             city: '',
             postalCode: '',
             country: '',
-            name: product.name,
+            order: product.name,
             quantity: 0,
             additionalInfo: ''
         });
@@ -217,14 +219,24 @@ const ProductDetails = () => {
                         </form> */}
                         <form  onSubmit={handleSubmit} className="order-form">
                             <label>
-                                Име и Фамилия:
-                                <input
-                                    type="text"
-                                    name="fullName"
-                                    value={formData.fullName}
-                                    onChange={handleChange}
-                                    required
-                                />
+                                Име:
+                                <input 
+                                    type="text" 
+                                    name="firstName" 
+                                    value={formData.firstName} 
+                                    onChange={handleChange} 
+                                    required 
+                                    />
+                            </label>
+                            <label>
+                                Фамилия:
+                                <input 
+                                    type="text" 
+                                    name="lastName" 
+                                    value={formData.lastName} 
+                                    onChange={handleChange} 
+                                    required 
+                                    />
                             </label>
                             <label>
                                 Телефон:
