@@ -21,6 +21,7 @@ const products = [
 ];
 
 const ProductDetails = () => {
+    let errOrder = "";
     const { id } = useParams();
     const product = products.find(p => p.id === parseInt(id));
     // const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
@@ -71,13 +72,20 @@ const ProductDetails = () => {
 
         emailjs.send('service_b06m24g', 'template_mk02aun', formData, 'mjkXxA3GKaz2EgF9X')
             .then((response) => {
-                console.log('SUCCESS!', response.status, response.text);
-                alert('Вашата поръчка е изпратена успешно!');
+                // console.log('SUCCESS!', response.status, response.text);
+                // alert('Вашата поръчка е изпратена успешно!');
             })
             .catch((err) => {
+                errOrder = err;
                 console.error('FAILED...', err);
                 alert('Грешка при изпращането на поръчката.');
             });
+        
+        if (errOrder === '')
+        {
+            handleCloseModal();
+            handleSubmitFastOrder(product);
+        }
 
         setFormData({
             firstName: '',
@@ -191,8 +199,12 @@ const ProductDetails = () => {
 
              {/* Показване на съобщението, когато е добавено в количката */}
              {isOrdered && (
-                <div className="cart-message">
-                    Благодарим за поръчката!
+                <div className="modal">
+                    <div className="modal-content">
+                        <p>
+                            Благодарим за поръчката! Очаквайте да се свържем с Вас за потвърждение от 1 до 3 работни дни.
+                        </p>
+                    </div>
                 </div>
             )}
             
@@ -279,7 +291,7 @@ const ProductDetails = () => {
                                     required
                                 />
                             </label>
-                            <button type="submit" onClick={() => handleSubmitFastOrder(product)}>Поръчай</button>
+                            <button type="submit">Поръчай</button>
                         </form>
                     </div>
                 </div>

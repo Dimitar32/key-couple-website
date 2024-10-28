@@ -4,6 +4,9 @@ import { CartContext } from '../contexts/CartContext'; // Импортирай �
 import './OrderForm.css'; // Стилове за формата
 
 const OrderForm = () => {
+    let errOrder = "";
+
+    const [isOrdered, setIsOrdered] = useState(false);
     const { cartItems, removeFromCart } = useContext(CartContext); // Вземаме продуктите и функцията за премахване от контекста
     const [formData, setFormData] = useState({
         firstName: '',
@@ -51,13 +54,26 @@ const OrderForm = () => {
 
         emailjs.send('service_b06m24g', 'template_mk02aun', formData, 'mjkXxA3GKaz2EgF9X')
             .then((response) => {
-                console.log('SUCCESS!', response.status, response.text);
-                alert('Вашата поръчка е изпратена успешно!');
+                // console.log('SUCCESS!', response.status, response.text);
+                // alert('Вашата поръчка е изпратена успешно!');
             })
             .catch((err) => {
+                errOrder = err;
+
                 console.error('FAILED...', err);
                 alert('Грешка при изпращането на поръчката.');
             });
+            
+        if (errOrder === "") 
+        {
+            setIsOrdered(true);
+    
+            // Автоматично скриване на съобщението след 3 секунди
+            setTimeout(() => {
+                setIsOrdered(false);
+            }, 3000);
+        }
+
 
         setFormData({
             firstName: '',
@@ -155,6 +171,18 @@ const OrderForm = () => {
                 
                 <button type="submit" className="submit-button">Изпрати поръчка</button>
             </form>
+            
+             {/* Показване на съобщението, когато е добавено в количката */}
+             {isOrdered && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <p>
+                            Благодарим за поръчката! Очаквайте да се свържем с Вас за потвърждение от 1 до 3 работни дни.
+                        </p>
+                    </div>
+                </div>
+            )}
+            
         </div>
         // </div>
     );
