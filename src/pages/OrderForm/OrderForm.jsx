@@ -71,9 +71,8 @@ const OrderForm = () => {
             // Автоматично скриване на съобщението след 3 секунди
             setTimeout(() => {
                 setIsOrdered(false);
-            }, 3000);
+            }, 5000);
         }
-
 
         setFormData({
             firstName: '',

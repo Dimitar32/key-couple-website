@@ -109,7 +109,7 @@ const ProductDetails = () => {
         // Автоматично скриване на съобщението след 3 секунди
         setTimeout(() => {
             setIsOrdered(false);
-        }, 3000);
+        }, 5000);
     }
     // Функция за промяна на бройката
     const handleQuantityChange = (e) => {
