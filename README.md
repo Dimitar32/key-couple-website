@@ -1,6 +1,7 @@
 # KeyCouple8
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**KeyCouple8** is a web application developed with React, CSS, and HTML, designed to function as an e-commerce site. The application allows users to browse products, add items to a shopping cart, and submit orders. Key features include a product page, a shopping cart, and quick order forms. Additionally, **EmailJS** is integrated to enable sending order confirmation and quick order emails directly from the application.
+
 ## Tech Stack
 
 ### Frontend
