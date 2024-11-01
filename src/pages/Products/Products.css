@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin: 0px 0;
+    margin: 20px 0;
     padding: 0px;
     margin-bottom: 50px;
     scroll-margin-top: 80px;
@@ -73,8 +73,16 @@ h3, p {
     margin: 5px;
 }
 
+
+.product-card {
+    max-width: 200px;
+}
+
+.products-title {
+    font-size: 30px;
+}
 /* Медийни заявки за адаптиране на ширината на продуктовите карти */
-@media (max-width: 1200px) {
+/* @media (max-width: 1200px) {
     .product-card {
         max-width: 250px;
     }
@@ -82,7 +90,7 @@ h3, p {
     .products-title {
         font-size: 36px;
     }
-}
+} */
 
 @media (max-width: 992px) {
     .product-card {
