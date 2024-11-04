@@ -6,7 +6,7 @@ import './ProductDetails.css';
 import Ariel from '../Products/Ariel.png';
 import Shrek from '../Products/Shrek.png';
 import Rapunzel from '../Products/Rapunzel.png';
-import LionKing from '../Products/Lion King.png';
+import LionKing from '../Products/LionKing.png';
 import Bunny from '../Products/Bunny.png';
 import Bella from '../Products/Bella.png';
 import { CartContext } from '../contexts/CartContext'; 
