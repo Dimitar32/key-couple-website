@@ -41,12 +41,18 @@
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     }
 
-    .product-card.coming-soon img {
-        filter: blur(5px);
-        opacity: 0.5;
-    }
-
 .product-image {
+    width: 100%;
+    max-width: 100%; /* Ограничава изображението до максималната ширина на контейнера */
+    height: 80%; /* Височината също се настройва според контейнера */
+    object-fit: contain; /* Изображението ще се адаптира, без да излиза извън контейнера */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.product-image-blur {
+    filter: blur(5px);
+    opacity: 0.5;
     width: 100%;
     max-width: 100%; /* Ограничава изображението до максималната ширина на контейнера */
     height: 80%; /* Височината също се настройва според контейнера */
