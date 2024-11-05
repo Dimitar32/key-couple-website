@@ -60,7 +60,7 @@
             color: white;
         }
         
-.link{
+.link-faq{
     color: inherit; /* Наследява цвета на родителя или го променете на желания */
     text-decoration: underline; /* Премахва подчертаването */
 }

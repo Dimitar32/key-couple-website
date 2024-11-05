@@ -8,13 +8,13 @@ const questionsAnswers = [
     { question: 'От кого се поема доставката?', answer: (
         <>
             Доставката се поема от клиента, при поръчки над 70лв е безплатна. Повече подробности може да намерите
-            <Link to="/delivery" className='link'> тук</Link>.
+            <Link to="/delivery" className='link-faq'> тук</Link>.
         </>
     )},
     { question: 'Кога се начислява доставката?', answer: (
         <>
             Доставката се начислява след като се обработи поръчката. Повече подробности може да намерите
-            <Link to="/delivery" className='link'> тук</Link>.
+            <Link to="/delivery" className='link-faq'> тук</Link>.
         </>
     )},
     { question: 'Има ли преглед и тест?', answer: 'Да, има преглед в офиса на куриерската фирма.' },
