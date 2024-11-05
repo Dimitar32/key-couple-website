@@ -40,6 +40,11 @@
         font-size: 14px; /* Намалява размера на шрифта на социалните връзки */
         margin: 0 5px; /* Намалява разстоянието между социалните връзки */
     }
+    
+    .link{
+        text-decoration: underline;
+    }
+
 }
 
 @media (max-width: 480px) {
