@@ -60,6 +60,11 @@
             color: white;
         }
         
+.link{
+    color: inherit; /* Наследява цвета на родителя или го променете на желания */
+    text-decoration: underline; /* Премахва подчертаването */
+}
+
 h2 {
     font-family: 'Roboto Slab', serif;
     font-size: 28px;
