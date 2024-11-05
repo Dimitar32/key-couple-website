@@ -9,6 +9,15 @@
     box-sizing: border-box; /* Включва падинг и рамка в широчината */
 }
 
+.link{
+    color: inherit; /* Наследява цвета на родителя или го променете на желания */
+    text-decoration: none; /* Премахва подчертаването */
+}
+
+    .link:hover{
+        text-decoration: underline;
+    }
+
 .social-links a {
     color: white;
     margin: 0 10px;
