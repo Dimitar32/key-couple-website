@@ -1,57 +1,63 @@
-.delivery-section{
+.privacy-section{
     margin-top: 8%;
     margin-bottom: 11%;
 }
 
-.delivery-section p{
+.privacy-section p{
     font-size: 17px; 
-    text-align: left; /* Подравняване на целия текст наляво */
-    padding-left: 20%; 
+    text-align: left; /* Ляво подравняване за параграфи и списъци */
 }
 
-.delivery-info {
+.privacy-info {
     text-align: left; /* Подравняване на целия текст наляво */
     font-size: 17px; 
+    margin-left: 20%;
+    margin-right: 10%;
   }
   
-  .delivery-info p {
-    margin: 0; /* Няма разстояние между параграфите */
+.privacy-info h3 {
+    text-align: left; /* Ляво подравняване за параграфи и списъци */
+}
+
+  .privacy-info p {
+    margin-left: 1%; /* Няма разстояние между параграфите */
     line-height: 1.6; /* Контролира височината на редовете за по-добра четимост */
+    text-align: left; /* Ляво подравняване за параграфи и списъци */
   }
   
-  .delivery-info ul {
-    padding-left: 20%; /* Отстояние на целия списък навътре */
-    padding-right: 15%;
+  .privacy-info ul {
+    padding-left: 10%; /* Отстояние на целия списък навътре */
     margin: 10px 0; /* Отстояние между списъка и другите елементи */
+    text-align: left; /* Ляво подравняване за параграфи и списъци */
   }
   
-  .delivery-info li {
-    margin-left: 5%;
-    /* margin-right: 15%; */
+  .privacy-info li {
     margin-bottom: 8px; /* Разстояние между елементите на списъка */
   }
   
   @media (max-width: 600px) {
-    .delivery-section{
+    .privacy-section{
         margin-top: 28%;
         margin-bottom: 26%;
     }
     
-    .delivery-section p{
-        padding-left: 1%; 
+    .privacy-section p{
         font-size: 14px; 
     }
 
-    .delivery-info {
+    .privacy-info {
       font-size: 14px; /* По-малък размер на шрифта за мобилни устройства */
       padding: 10px; /* Допълнително отстояние около съдържанието */
+      margin-left: 2%;
+      margin-right: 1%;
     }
   
-    .delivery-info ul {
+    .privacy-info ul {
       padding-left: 15px; /* Намалено отстояние на списъка за по-малки екрани */
+      margin-left: 2%;
     }
   
-    .delivery-info li {
+    .privacy-info li {
       margin-bottom: 6px; /* По-малко разстояние между елементите на списъка */
     }
   }

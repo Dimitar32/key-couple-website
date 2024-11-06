@@ -18,6 +18,16 @@
         text-decoration: underline;
     }
 
+.link-privacy{
+    color: inherit; /* Наследява цвета на родителя или го променете на желания */
+    text-decoration: none; /* Премахва подчертаването */
+
+}
+
+    .link-privacy:hover{
+        text-decoration: underline;
+    }
+
 .social-links a {
     color: white;
     margin: 0 10px;
@@ -45,9 +55,13 @@
         text-decoration: underline;
     }
 
+    .link-privacy{
+        text-decoration: underline;
+    }
+
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     /*.social-links {
         display: block;*/ /* Променя разположението на блок за по-добър визуален ред */
     /*}*/

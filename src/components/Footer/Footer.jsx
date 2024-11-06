@@ -39,7 +39,7 @@ const Footer = () => {
             <p>Свържете се с нас: keycouple@outlook.com</p>
             <Link to="/delivery" className='link'>Правила за доставка</Link>
             
-            <p style={{ marginTop: '20px' }}>&copy; {new Date().getFullYear()} KeyCouple8. Всички права запазени.</p>
+            <p /*style={{ marginTop: '20px', marginBottom: '0px' }}*/>&copy; {new Date().getFullYear()} KeyCouple8. <Link to="/privacy" className='link-privacy'>Всички права запазени</Link></p>
         </footer>
     );
 };

@@ -9,6 +9,7 @@ import OrderForm from './pages/OrderForm/OrderForm';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import NotAvaliable from './pages/NotAvaliable/NotAvaliable.jsx';
 import Delivery from './pages/Delivery/Delivery.jsx';
+import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy.jsx';
 import { CartProvider } from './pages/contexts/CartContext'; // Импортирай провайдъра
 import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -39,6 +40,7 @@ function App() {
             <Route path="/order" element={<OrderForm />} /> {/* Добавяме нов маршрут за формата */}
             <Route path="/notavl" element={<NotAvaliable />} />
             <Route path="/delivery" element={<Delivery />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
       
             {/* <Route path="/product/:id" element={<ProductDetails addToCart={addToCart} />} /> */}
             {/* <Route path="/cart" element={<Cart cartItems={cartItems} sendOrder={sendOrder} />} /> */}
