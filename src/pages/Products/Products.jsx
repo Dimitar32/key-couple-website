@@ -13,16 +13,16 @@ const products = [
     { id: 2, name: 'Шрек и Фиона', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Shrek },
     { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: LionKing },
     // { id: 3, name: 'Рапунцел и Флин', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Rapunzel },
-    { id: 5, name: 'Бъгс и Лола', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Bunny }
-    // { id: 6, name: 'Бел и Звяр', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Bella }
+    { id: 5, name: 'Бъгс и Лола', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Bunny },
+    { id: 6, name: 'Бел и Звяр', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Bella }
 ];
 
 const blurProducts = [
     // { id: 1, name: 'Ерик и Ариел', oldPrice: '35.99 лв', price: 'Очаквайте скоро', imageUrl: Ariel },
-    { id: 3, name: 'Рапунцел и Флин', oldPrice: '35.99 лв', price: 'Очаквайте скоро', imageUrl: Rapunzel },
+    { id: 3, name: 'Рапунцел и Флин', oldPrice: '35.99 лв', price: 'Очаквайте скоро', imageUrl: Rapunzel }
     // { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: 'Очаквайте скоро', imageUrl: LionKing },
     // { id: 5, name: 'Бъгс и Лола', oldPrice: '35.99 лв', price: 'Очаквайте скоро', imageUrl: Bunny },
-    { id: 6, name: 'Бел и Звяр', oldPrice: '35.99 лв', price: 'Очаквайте скоро', imageUrl: Bella }
+    // { id: 6, name: 'Бел и Звяр', oldPrice: '35.99 лв', price: 'Очаквайте скоро', imageUrl: Bella }
 ];
 
 const Products = () => {
