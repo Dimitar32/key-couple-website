@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link, useLocation} from 'react-router-dom';
 import './Footer.css';
 import {
     FaFacebookF,
@@ -8,8 +8,12 @@ import {
 } from 'react-icons/fa';
 
 const Footer = () => {
+    const location = useLocation();
+  
+    const footerClass = location.pathname === '/notavl' ? 'fixed-footer' : '';
+  
     return (
-        <footer className="footer">
+        <footer className={`footer ${footerClass}`}>
             <div className="social-links">
                 <a
                     target="_blank" rel="noopener noreferrer"

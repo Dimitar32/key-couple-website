@@ -7,6 +7,8 @@
     margin-bottom: 0px;
     width: 100%; /* Заема цялата ширина на вида */
     box-sizing: border-box; /* Включва падинг и рамка в широчината */
+    position: flex;
+    bottom: 0;
 }
 
 .link{
@@ -40,6 +42,12 @@
         text-decoration: underline; /* Подчертаване при ховър */
     }
 
+.fixed-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+    
 /* Медийни заявки за футъра */
 @media (max-width: 768px) {
     .footer {
