@@ -7,7 +7,7 @@ const OrderForm = () => {
     let errOrder = "";
 
     const [isOrdered, setIsOrdered] = useState(false);
-    const { cartItems, removeFromCart } = useContext(CartContext); // Вземаме продуктите и функцията за премахване от контекста
+    const { cartItems, removeFromCart, clearCart } = useContext(CartContext); // Вземаме продуктите и функцията за премахване от контекста
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -82,6 +82,8 @@ const OrderForm = () => {
             city: '',
             order: ''
         });
+
+        clearCart();
     };
 
 
