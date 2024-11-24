@@ -10,7 +10,8 @@ import {
 const Footer = () => {
     const location = useLocation();
   
-    const footerClass = location.pathname === '/notavl' ? 'fixed-footer' : '';
+    const fixedFooterPages = ['/notavl', '/delivery'];
+    const footerClass = fixedFooterPages.includes(location.pathname) ? 'fixed-footer' : '';
   
     return (
         <footer className={`footer ${footerClass}`}>
