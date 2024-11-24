@@ -7,6 +7,7 @@ import Rapunzel from './Rapunzel.png';
 import LionKing from './LionKing.png';
 import Bunny from './Bunny.png';
 import Bella from './Bella.png';
+import ChristmasQuestionMark from './ChristmasQuestionMark.png';
 
 const products = [
     { id: 1, name: 'Ерик и Ариел', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Ariel },
@@ -15,10 +16,12 @@ const products = [
     // { id: 3, name: 'Рапунцел и Флин', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Rapunzel },
     // { id: 5, name: 'Бъгс и Лола', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Bunny },
     { id: 6, name: 'Бел и Звяр', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Bella }
+    // { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '59.90 лв', price: 'Очаквайте скоро', imageUrl: ChristmasQuestionMark},
 ];
 
 const blurProducts = [
     // { id: 1, name: 'Ерик и Ариел', oldPrice: '35.99 лв', price: 'Очаквайте скоро', imageUrl: Ariel },
+    { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '59.90 лв', price: 'Очаквайте скоро', imageUrl: ChristmasQuestionMark},
     { id: 3, name: 'Рапунцел и Флин', oldPrice: '35.99 лв', price: 'Очаквайте скоро', imageUrl: Rapunzel },
     // { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: 'Очаквайте скоро', imageUrl: LionKing },
     { id: 5, name: 'Бъгс и Лола', oldPrice: '35.99 лв', price: 'Очаквайте скоро', imageUrl: Bunny }
