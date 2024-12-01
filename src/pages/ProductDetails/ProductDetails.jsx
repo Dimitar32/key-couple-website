@@ -1,23 +1,32 @@
 import { useState } from 'react';
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css';
 import emailjs from 'emailjs-com';
 import './ProductDetails.css';
 import Ariel from '../Products/Ariel.png';
+import Ariel1 from '../Products/Ariel1.jpg';
 import Shrek from '../Products/Shrek.png';
+import Shrek1 from '../Products/Shrek1.jpg';
 import Rapunzel from '../Products/Rapunzel.png';
+import Rapunzel1 from '../Products/Rapunzel1.jpg';
 import LionKing from '../Products/LionKing.png';
+import LionKing1 from '../Products/LionKing1.jpg';
 import Bunny from '../Products/Bunny.png';
+import Bunny1 from '../Products/Bunny1.jpg';
 import Bella from '../Products/Bella.png';
+import Bella1 from '../Products/Bella1.jpg';
 import { CartContext } from '../contexts/CartContext'; 
 
 const products = [
-    { id: 1, name: 'Ерик и Ариел', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Ariel, description: 'Красив ключодържател с героите Ерик и Ариел.' },
-    { id: 2, name: 'Шрек и Фиона', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Shrek, description: 'Забавен ключодържател с Шрек и Фиона.' },
-    { id: 3, name: 'Рапунцел и Флин', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Rapunzel, description: 'Романтичен ключодържател с Рапунцел и Флин.' },
-    { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: LionKing, description: 'Ключодържател с Нала и Симба, героите от "Цар Лъв".' },
-    { id: 5, name: 'Бъгс и Лола', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Bunny, description: 'Бъгс и Лола ключодържател.' },
-    { id: 6, name: 'Бел и Звяр', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Bella, description: 'Бела и Звяра ключодръжател.' }
+    { id: 1, name: 'Ерик и Ариел', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Ariel, Ariel1], description: 'Красив ключодържател с героите Ерик и Ариел.' },
+    { id: 2, name: 'Шрек и Фиона', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Shrek, Shrek1], description: 'Забавен ключодържател с Шрек и Фиона.' },
+    { id: 3, name: 'Рапунцел и Флин', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Rapunzel, Rapunzel1], description: 'Романтичен ключодържател с Рапунцел и Флин.' },
+    { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [LionKing, LionKing1], description: 'Ключодържател с Нала и Симба, героите от "Цар Лъв".' },
+    { id: 5, name: 'Бъгс и Лола', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Bunny, Bunny1], description: 'Бъгс и Лола ключодържател.' },
+    { id: 6, name: 'Бел и Звяр', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Bella, Bella1], description: 'Бела и Звяра ключодръжател.' },
+    { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '59.90 лв', price: '35.90 лв', imageUrl: [Bella, Bella], description: 'Коледен комплект' }
 ];
 
 const ProductDetails = () => {
@@ -30,7 +39,6 @@ const ProductDetails = () => {
     const [isAdded, setIsAdded] = useState(false);
     const [isOrdered, setIsOrdered] = useState(false);
     const [cantAddZero, cantAddZeroToCart] = useState(false);
-    
 
     // const toggleDescription = () => {
     //     setIsDescriptionVisible(!isDescriptionVisible);
@@ -143,7 +151,25 @@ const ProductDetails = () => {
 
     return (
         <section id="products" className="product-details-section">
-            <img src={product.imageUrl} alt={product.name} className="product-image" />
+            <Swiper
+                spaceBetween={10}
+                slidesPerView={1}
+                navigation
+                loop
+                className="swiper-container" // Ensure this class is applied
+            >
+                {product.imageUrl.map((image, index) => (
+                    <SwiperSlide key={index} className="swiper-slide">
+                        <img
+                            src={image}
+                            alt={`Product ${index + 1}`}
+                            className="product-image"
+                        />
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+
+            {/* <img src={product.imageUrl} alt={product.name} className="product-image" /> */}
             <div className="product-details">
             <h2>{product.name}</h2>
                 {/* <button className="description-toggle" onClick={toggleDescription}>
@@ -166,6 +192,28 @@ const ProductDetails = () => {
                         style={{ width: '50px', marginLeft: '10px' }} // Леко стилизиране
                     />
                 </label>
+                
+                {product.id === 7 && (
+                    <label>
+                        {/*Опции:*/}
+                        <select 
+                            className="product-options-dropdown" 
+                            value={formData.option || ''} 
+                            onChange={(e) => 
+                                setFormData({ ...formData, option: e.target.value })
+                            }
+                            required
+                        >
+                            <option value="" disabled>Изберете опция</option>
+                            <option value="Option Ariel">Ариел и Ерик</option>
+                            <option value="Option Erik">Шрек и Фиона</option>
+                            <option value="Option Simba">Нала и Симба</option>
+                            <option value="Option Bell and Zwqr">Бел и Звяр</option>
+                            <option value="Option Rapunzel">Рапунцел и Флин</option>
+                            <option value="Option Bugs and Lolla">Бъгс и Лола</option>
+                        </select>
+                    </label>
+                )}
 
                 <div className="product-buttons">
                     <button className="order-button" onClick={() => handleAddToCart(product, quantity)}>Добави в количката</button>

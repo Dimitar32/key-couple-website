@@ -307,6 +307,163 @@ form {
     border-color: #e91e63; /* Променяме цвета на границата при фокус */
 }
 
+.product-options-label {
+    font-size: 18px;
+    margin-right: 10px;
+    color: #333;
+}
+
+.product-options-dropdown {
+    width: 200px;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+}
+
+.product-options-dropdown option {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Ensure Swiper container matches the image size */
+.swiper-container {
+    width: 400px; /* Fixed width for the container */
+    height: auto; /* Adjust height dynamically */
+    margin: 0 auto; /* Center horizontally */
+    display: flex; /* Flexbox for alignment */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    border-radius: 0px; /* No rounded corners */
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    background-color: transparent; /* No background */
+    overflow: hidden; /* Prevent overflow issues */
+}
+
+/* Swiper slide container */
+.swiper-slide {
+    width: 400px; /* Match the container width */
+    height: auto; /* Dynamically adjust height */
+    display: center; /* Center content in the slide */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    background-color: transparent; /* No background */
+}
+
+/* Ensure the image fits fully without cropping */
+.swiper-slide img {
+    max-width: 100%; /* Ensure image fits container width */
+    max-height: 100%; /* Ensure image fits container height */
+    width: auto; /* Maintain aspect ratio */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Rounded corners for the image */
+    object-fit: contain; /* Ensure the full image is visible */
+    display: block; /* Prevent inline spacing issues */
+}
+
+/* Navigation buttons styling */
+.swiper-button-prev,
+.swiper-button-next {
+    position: absolute;
+    top: 50%; /* Center vertically on the image */
+    transform: translateY(-50%); /* Adjust for proper centering */
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
+    color: white; /* Arrow icon color */
+    border-radius: 50%; /* Circular buttons */
+    width: 40px; /* Button width */
+    height: 40px; /* Button height */
+    display: flex;
+    justify-content: center; /* Center the arrow icon horizontally */
+    align-items: center; /* Center the arrow icon vertically */
+    z-index: 10; /* Ensure the buttons are above the image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow for better visibility */
+    cursor: pointer; /* Show pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Position the left button on the left side of the image */
+.swiper-button-prev {
+    left: 10px; /* Adjust as needed to position on the image */
+}
+
+/* Position the right button on the right side of the image */
+.swiper-button-next {
+    right: 10px; /* Adjust as needed to position on the image */
+}
+
+/* Hover effect */
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+    transform: translateY(-50%) scale(1.1); /* Slightly enlarge the button */
+}
+
+/* Custom arrow icons */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    font-size: 18px; /* Adjust arrow size */
+    font-weight: bold;
+    content: ''; /* Override default Swiper icons */
+}
+
+.swiper-button-prev::after {
+    content: '‹'; /* Left arrow */
+}
+
+.swiper-button-next::after {
+    content: '›'; /* Right arrow */
+}
+
+
+/*
+.image-slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.product-image-slider {
+    width: 400px;
+    height: auto;
+    margin-right: 40px; 
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.slider-button {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+}
+
+.slider-button.prev {
+    left: 10px;
+}
+
+.slider-button.next {
+    right: 10px;
+}
+
+.slider-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}*/
+
 /* Mobile-friendly медийни заявки */
 @media (max-width: 1256px) {
     .product-details-section {
@@ -330,12 +487,43 @@ form {
     .product-details-section {
         padding-top: 150px;
     }
-
-
 }
 
 /* Mobile-friendly медийни заявки */
 @media (max-width: 768px) {
+    .swiper-container {
+        padding-left: 0px;
+        width: 300px; /* Fixed width for the container */
+    }
+
+    /* Adjust left button positioning for mobile */
+    .swiper-button-prev {
+        left: 0px; /* Place it closer to the left edge */
+        top: 50%; /* Ensure vertical centering */
+        transform: translateY(-50%);
+    }
+
+    /* Adjust right button positioning for mobile */
+    .swiper-button-next {
+        right: 0px; /* Place it closer to the right edge */
+        top: 50%; /* Ensure vertical centering */
+        transform: translateY(-50%);
+    }
+
+    /* Reduce button size on mobile */
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 30px; /* Smaller button size for mobile */
+        height: 30px;
+        background-color: rgba(0, 0, 0, 0.7); /* Maintain semi-transparent background */
+    }
+
+    /* Adjust arrow icon size for mobile */
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
+        font-size: 14px; /* Smaller arrow icons */
+    }
+
     .product-details-section {
         flex-direction: column;
         align-items: center;
@@ -343,7 +531,14 @@ form {
         padding-top: 150px;
     }
 
-    .product-details-section .product-image {
+    .swiper-slide img {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 15px;
+        margin-left: 0px; 
+    }
+
+    .product-image-slider {
         width: 100%;
         max-width: 300px;
         margin-bottom: 15px;
@@ -358,10 +553,6 @@ form {
         width: 100%;
         margin-bottom: 10px;
     }
-
-    /* .product-description {
-        display: none;
-    } */
 
     .description-toggle {
         background-color: #f77fbe;
