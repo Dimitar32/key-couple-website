@@ -100,6 +100,12 @@ p{
     color: #333;
 }
 
+.product-quantity-input-label{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 .product-quantity-input {
     width: 60px;
     padding: 8px;
@@ -107,6 +113,9 @@ p{
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 20px;
+    display: center;
+    align-items: center;
+    justify-content: center;
     text-align: center;
 }
 
@@ -313,6 +322,12 @@ form {
     color: #333;
 }
 
+.product-options-dropdown-label {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 .product-options-dropdown {
     width: 200px;
     padding: 8px;
@@ -418,51 +433,6 @@ form {
 .swiper-button-next::after {
     content: '›'; /* Right arrow */
 }
-
-
-/*
-.image-slider {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.product-image-slider {
-    width: 400px;
-    height: auto;
-    margin-right: 40px; 
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.slider-button {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 20px;
-    z-index: 10;
-    top: 50%;
-    transform: translateY(-50%);
-    border-radius: 50%;
-}
-
-.slider-button.prev {
-    left: 10px;
-}
-
-.slider-button.next {
-    right: 10px;
-}
-
-.slider-button:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}*/
 
 /* Mobile-friendly медийни заявки */
 @media (max-width: 1256px) {

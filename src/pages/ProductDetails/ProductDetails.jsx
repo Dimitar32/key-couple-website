@@ -33,16 +33,11 @@ const ProductDetails = () => {
     let errOrder = "";
     const { id } = useParams();
     const product = products.find(p => p.id === parseInt(id));
-    // const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
-    const [quantity, setQuantity] = useState(1); // Бройката започва от 1
+    const [quantity, setQuantity] = useState(1); 
     
     const [isAdded, setIsAdded] = useState(false);
     const [isOrdered, setIsOrdered] = useState(false);
     const [cantAddZero, cantAddZeroToCart] = useState(false);
-
-    // const toggleDescription = () => {
-    //     setIsDescriptionVisible(!isDescriptionVisible);
-    // };
 
     const [showModal, setShowModal] = useState(false);
 
@@ -119,7 +114,7 @@ const ProductDetails = () => {
             setIsOrdered(false);
         }, 5000);
     }
-    // Функция за промяна на бройката
+    
     const handleQuantityChange = (e) => {
         const value = parseInt(e.target.value, 10);
         // if (value > 0) {
@@ -182,19 +177,19 @@ const ProductDetails = () => {
                 <p className="product-price">Цена: {product.price}</p>
 
                 {/* Поле за избор на бройка */}
-                <label>
+                <label className='product-quantity-input-label'>
                     {/* Бройка: */}
                     <input className="product-quantity-input"
                         type="number"
                         value={quantity}
                         onChange={handleQuantityChange}
                         min="1"
-                        style={{ width: '50px', marginLeft: '10px' }} // Леко стилизиране
+                        style={{ width: '50px', marginLeft: '0px' }} // Леко стилизиране
                     />
                 </label>
                 
                 {product.id === 7 && (
-                    <label>
+                    <label className="product-options-dropdown-label">
                         {/*Опции:*/}
                         <select 
                             className="product-options-dropdown" 
