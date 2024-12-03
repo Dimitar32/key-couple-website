@@ -78,7 +78,7 @@ const ProductDetails = () => {
     };
 
     const handleSubmit = (e) => {
-        if (product.id === 7 && !product.option) {
+        if (product.id === 7 && !formData.option) {
             alert('Моля, изберете опция преди да добавите този продукт в количката.');
             return;
         }
@@ -137,7 +137,7 @@ const ProductDetails = () => {
 
     // Функция за добавяне в количката и показване на съобщението
     const handleAddToCart = (product, quantity, value) => {
-        if (product.id === 7 && !product.option) {
+        if (product.id === 7 && !value) {
             alert('Моля, изберете опция преди да добавите този продукт в количката.');
             return;
         }
