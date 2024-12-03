@@ -30,19 +30,21 @@ export const CartProvider = ({ children }) => {
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }, [cartItems]);
 
-    // Функция за добавяне на продукт в количката
-    const addToCart = (product, quantity) => {
+    const addToCart = (product, quantity, option) => {
         setCartItems((prevItems) => {
-            // Проверяваме дали продуктът вече е в количката
-            const itemExists = prevItems.find(item => item.id === product.id);
+            // Check if the product with the same ID and option already exists in the cart
+            const itemExists = prevItems.find(item => item.id === product.id && item.option === option);
+    
             if (itemExists) {
-                // Ако продуктът вече е в количката, увеличаваме количеството му
+                // Update quantity if the same product with the same option exists
                 return prevItems.map(item =>
-                    item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item
+                    item.id === product.id && item.option === option
+                        ? { ...item, quantity: item.quantity + quantity }
+                        : item
                 );
             } else {
-                // Ако продуктът не е в количката, го добавяме с количество 1
-                return [...prevItems, { ...product, quantity: quantity }];
+                // Add a new item if it doesn't already exist
+                return [...prevItems, { ...product, quantity, option }];
             }
         });
     };

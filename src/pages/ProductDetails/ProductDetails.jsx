@@ -17,6 +17,12 @@ import Bunny from '../Products/Bunny.png';
 import Bunny1 from '../Products/Bunny1.jpg';
 import Bella from '../Products/Bella.png';
 import Bella1 from '../Products/Bella1.jpg';
+import Christmas1 from '../Products/Christmas1.jpg';
+import Christmas2 from '../Products/Christmas2.jpg';
+import Christmas3 from '../Products/Christmas3.jpg';
+import Christmas4 from '../Products/Christmas4.jpg';
+import Christmas5 from '../Products/Christmas5.jpg';
+import Christmas6 from '../Products/Christmas6.jpg';
 import { CartContext } from '../contexts/CartContext'; 
 
 const products = [
@@ -26,7 +32,7 @@ const products = [
     { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [LionKing, LionKing1], description: 'Ключодържател с Нала и Симба, героите от "Цар Лъв".' },
     { id: 5, name: 'Бъгс и Лола', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Bunny, Bunny1], description: 'Бъгс и Лола ключодържател.' },
     { id: 6, name: 'Бел и Звяр', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Bella, Bella1], description: 'Бела и Звяра ключодръжател.' },
-    { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '59.90 лв', price: '35.90 лв', imageUrl: [Bella, Bella], description: 'Коледен комплект' }
+    { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '59.90 лв', price: '35.90 лв', imageUrl: [Christmas1, Christmas2, Christmas3, Christmas4, Christmas5, Christmas6], description: 'Коледен комплект' }
 ];
 
 const ProductDetails = () => {
@@ -59,7 +65,8 @@ const ProductDetails = () => {
         country: '',
         order: product.name,
         quantity: 0,
-        additionalInfo: ''
+        additionalInfo: '',
+        option: product.option
     });
 
     const handleChange = (e) => {
@@ -71,6 +78,11 @@ const ProductDetails = () => {
     };
 
     const handleSubmit = (e) => {
+        if (product.id === 7 && !product.option) {
+            alert('Моля, изберете опция преди да добавите този продукт в количката.');
+            return;
+        }
+
         e.preventDefault();
 
         emailjs.send('service_b06m24g', 'template_mk02aun', formData, 'mjkXxA3GKaz2EgF9X')
@@ -100,7 +112,8 @@ const ProductDetails = () => {
             country: '',
             order: product.name,
             quantity: 0,
-            additionalInfo: ''
+            additionalInfo: '',
+            option: product.option
         });
     };
 
@@ -123,8 +136,13 @@ const ProductDetails = () => {
     };
 
     // Функция за добавяне в количката и показване на съобщението
-    const handleAddToCart = (product, quantity) => {
-        addToCart(product, quantity); // Извиква съществуващата функция за добавяне в количката
+    const handleAddToCart = (product, quantity, value) => {
+        if (product.id === 7 && !product.option) {
+            alert('Моля, изберете опция преди да добавите този продукт в количката.');
+            return;
+        }
+
+        addToCart(product, quantity, value); // Извиква съществуващата функция за добавяне в количката
 
         if (quantity > 0) {
             // Показване на съобщението
@@ -200,18 +218,18 @@ const ProductDetails = () => {
                             required
                         >
                             <option value="" disabled>Изберете опция</option>
-                            <option value="Option Ariel">Ариел и Ерик</option>
-                            <option value="Option Erik">Шрек и Фиона</option>
-                            <option value="Option Simba">Нала и Симба</option>
-                            <option value="Option Bell and Zwqr">Бел и Звяр</option>
-                            <option value="Option Rapunzel">Рапунцел и Флин</option>
-                            <option value="Option Bugs and Lolla">Бъгс и Лола</option>
+                            <option value="Ариел и Ерик">Ариел и Ерик</option>
+                            <option value="Шрек и Фиона">Шрек и Фиона</option>
+                            <option value="Нала и Симба">Нала и Симба</option>
+                            <option value="Бел и Звяр">Бел и Звяр</option>
+                            <option value="Рапунцел и Флин">Рапунцел и Флин</option>
+                            <option value="Бъгс и Лола">Бъгс и Лола</option>
                         </select>
                     </label>
                 )}
 
                 <div className="product-buttons">
-                    <button className="order-button" onClick={() => handleAddToCart(product, quantity)}>Добави в количката</button>
+                    <button className="order-button" onClick={() => handleAddToCart(product, quantity, formData.option)}>Добави в количката</button>
                     <button className="order-button" onClick={handleOrderClick}>Бърза поръчка</button>
                 </div>
 

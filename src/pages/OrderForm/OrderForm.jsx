@@ -14,7 +14,8 @@ const OrderForm = () => {
         phone: '',
         address: '',
         city: '',
-        order: ''
+        order: '',
+        option: ''
     });
 
     // const [formData, setFormData] = useState({
@@ -47,12 +48,16 @@ const OrderForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const order = cartItems.map(item =>  `Name: ${item.name}, Quantity: ${item.quantity}`)
+        const orderDetails = cartItems
+        .map(item => `Name: ${item.name}, Quantity: ${item.quantity}, Option: ${item.option || 'None'}`)
         .join('\n');
-        
-        formData.order = order;
+    
+        const emailData = {
+            ...formData,
+            order: orderDetails,
+        };
 
-        emailjs.send('service_b06m24g', 'template_mk02aun', formData, 'mjkXxA3GKaz2EgF9X')
+        emailjs.send('service_b06m24g', 'template_mk02aun', emailData , 'mjkXxA3GKaz2EgF9X')
             .then((response) => {
                 // console.log('SUCCESS!', response.status, response.text);
                 // alert('Вашата поръчка е изпратена успешно!');
@@ -80,7 +85,8 @@ const OrderForm = () => {
             phone: '',
             address: '',
             city: '',
-            order: ''
+            order: '',
+            option: ''
         });
 
         clearCart();
@@ -156,7 +162,7 @@ const OrderForm = () => {
                         <ul>
                             {cartItems.map(item => (
                                 <li key={item.id} className="cart-item">
-                                    {item.name} - {item.quantity} бр. - {(parseFloat(item.price.replace(/[^\d.-]/g, '')) * item.quantity).toFixed(2)} лв.
+                                {item.name} - {item.quantity} бр. - {item.option || ''} {(parseFloat(item.price.replace(/[^\d.-]/g, '')) * item.quantity).toFixed(2)} лв.
                                     <button 
                                         className="remove-button" 
                                         type="button" 
