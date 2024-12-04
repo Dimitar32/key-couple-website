@@ -7,10 +7,10 @@ import Rapunzel from './Rapunzel.png';
 import LionKing from './LionKing.png';
 import Bunny from './Bunny.png';
 import Bella from './Bella.png';
-import Christmas1 from './Christmas1.jpg';
+import Christmas from './Christmas.jpg';
 
 const products = [
-    { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '', price: '35.99 лв', imageUrl: Christmas1},
+    { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '', price: '35.99 лв', imageUrl: Christmas},
     { id: 1, name: 'Ерик и Ариел', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Ariel },
     { id: 2, name: 'Шрек и Фиона', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Shrek },
     { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: LionKing },
