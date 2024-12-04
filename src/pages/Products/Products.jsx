@@ -10,7 +10,7 @@ import Bella from './Bella.png';
 import Christmas1 from './Christmas1.jpg';
 
 const products = [
-    { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '59.90 лв', price: '35.99 лв', imageUrl: Christmas1},
+    { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '', price: '35.99 лв', imageUrl: Christmas1},
     { id: 1, name: 'Ерик и Ариел', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Ariel },
     { id: 2, name: 'Шрек и Фиона', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Shrek },
     { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: LionKing },
@@ -22,9 +22,9 @@ const products = [
 const blurProducts = [
     // { id: 1, name: 'Ерик и Ариел', oldPrice: '35.99 лв', price: 'Очаквайте скоро', imageUrl: Ariel },
     // { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '59.90 лв', price: 'Очаквайте скоро', imageUrl: ChristmasQuestionMark},
-    { id: 3, name: 'Рапунцел и Флин', oldPrice: '35.99 лв', price: 'Очаквайте скоро', imageUrl: Rapunzel },
+    { id: 3, name: 'Рапунцел и Флин', oldPrice: '??.?? лв', price: 'Очаквайте скоро', imageUrl: Rapunzel },
     // { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: 'Очаквайте скоро', imageUrl: LionKing },
-    { id: 5, name: 'Бъгс и Лола', oldPrice: '35.99 лв', price: 'Очаквайте скоро', imageUrl: Bunny }
+    { id: 5, name: 'Бъгс и Лола', oldPrice: '??.?? лв', price: 'Очаквайте скоро', imageUrl: Bunny }
     // { id: 6, name: 'Бел и Звяр', oldPrice: '35.99 лв', price: 'Очаквайте скоро', imageUrl: Bella }
 ];
 
@@ -44,11 +44,11 @@ const Products = () => {
             ))}
             {blurProducts.map(product => (
                 <Link to={`/notavl`} key={product.id} className="product-link">
-                <div key={product.id} className="product-card">
+                <div key={product.id} className="product-card-blur">
                     <img src={product.imageUrl} alt={product.name} className="product-image-blur" />
                     {/* <div class="overlay"> */}
                         <h3>{product.name}</h3>
-                        <p className="old-price">{product.oldPrice}</p> {/* Показване на старата цена със зачеркване */}
+                        <p className="product-card-blur-old-price">{product.oldPrice}</p> {/* Показване на старата цена със зачеркване */}
                         <p className="new-price">{product.price}</p> {/* Показване на новата цена */}
                     {/* </div> */}
                 </div>

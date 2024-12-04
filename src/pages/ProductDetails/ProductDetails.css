@@ -11,15 +11,6 @@
     padding-top:  11.3%;
 }
 
-/* .product-image {
-    width: 400px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    margin-right: 40px;
-} */
-
-
 .product-details-section .product-image {
     width: 400px;
     height: auto;
@@ -37,6 +28,7 @@
     justify-content: flex-start;
     /* align-items: flex-end; Подравняваме всичко вдясно */
     text-align: right; 
+    width: 350px;
 }
 
 .product-details-section h2 {
@@ -434,13 +426,48 @@ form {
     content: '›'; /* Right arrow */
 }
 
+
+.product-description {
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.description-toggle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f77fbe;
+    cursor: pointer;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.description-toggle:hover {
+    text-decoration: underline;
+}
+
+.description-text {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+    animation: fadeIn 0.3s ease-in-out;
+    text-align: center;
+}
+
+@media (min-width: 1024px) {
+    .product-details {
+        width:600px;
+    }
+}
+
 /* Mobile-friendly медийни заявки */
 @media (max-width: 1256px) {
     .product-details-section {
         padding-top: 160px;
     }
-
-
 }
 
 /* Mobile-friendly медийни заявки */
@@ -517,22 +544,35 @@ form {
 
     .product-details {
         text-align: center;
+        width:none;
     }
 
     .order-button {
-        width: 100%;
+        width: 230px;
         margin-bottom: 10px;
     }
 
     .description-toggle {
-        background-color: #f77fbe;
-        color: white;
+        color: #f77fbe;
         font-size: 18px;
         padding: 10px;
         border: none;
         border-radius: 8px;
         cursor: pointer;
         margin-bottom: 10px;
+        width: 230px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .description-text{
+        text-align: center;
+    }
+
+    .description-toggle {
+        margin-left: 50px;
     }
 }
 
@@ -542,9 +582,9 @@ form {
         font-size: 24px;
     }
 
-    .product-price {
+    /* .product-price {
         font-size: 20px;
-    }
+    } */
 
     .order-button {
         font-size: 16px;

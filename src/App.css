@@ -1,43 +1,3 @@
-/*.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-*/
-
 /* Глобални стилове за приложението */
 body, html {
     margin: 0;
@@ -56,16 +16,7 @@ body, html {
     display: flex;
     flex-direction: column; /* Управление на основната ориентация на компонентите */
     align-items: center; /* Центрира компонентите хоризонтално */
-    /*width: 100%;*/ /* Ширина на основното съдържание */
 }
-
-/*header, footer {
-    width: 100%;*/ /* Осигурява, че заглавието и футърът заемат цялата ширина */
-/*background-color: #007bff;*/ /* Син цвят за заглавие и футър */
-/*color: white;*/ /* Бял текст, който се откроява на синия фон */
-/*padding: 15px 0;*/ /* Вертикални отстояния за заглавието и футъра */
-/*text-align: center;*/ /* Центриране на текста в заглавието и футъра */
-/*}*/
 
 nav a {
     color: white; /* Цвят на връзките в навигацията */

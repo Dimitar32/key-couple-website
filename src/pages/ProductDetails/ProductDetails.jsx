@@ -26,13 +26,13 @@ import Christmas6 from '../Products/Christmas6.jpg';
 import { CartContext } from '../contexts/CartContext'; 
 
 const products = [
-    { id: 1, name: 'Ерик и Ариел', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Ariel, Ariel1], description: 'Красив ключодържател с героите Ерик и Ариел.' },
-    { id: 2, name: 'Шрек и Фиона', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Shrek, Shrek1], description: 'Забавен ключодържател с Шрек и Фиона.' },
-    { id: 3, name: 'Рапунцел и Флин', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Rapunzel, Rapunzel1], description: 'Романтичен ключодържател с Рапунцел и Флин.' },
-    { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [LionKing, LionKing1], description: 'Ключодържател с Нала и Симба, героите от "Цар Лъв".' },
-    { id: 5, name: 'Бъгс и Лола', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Bunny, Bunny1], description: 'Бъгс и Лола ключодържател.' },
-    { id: 6, name: 'Бел и Звяр', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Bella, Bella1], description: 'Бела и Звяра ключодръжател.' },
-    { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '59.90 лв', price: '35.90 лв', imageUrl: [Christmas1, Christmas2, Christmas3, Christmas4, Christmas5, Christmas6], description: 'Коледен комплект' }
+    { id: 1, name: 'Ерик и Ариел', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Ariel, Ariel1], description: 'Комплект ключодържатели с героите Ерик и Ариел.' },
+    { id: 2, name: 'Шрек и Фиона', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Shrek, Shrek1], description: 'Комплект ключодържатели с героите Шрек и Фиона.' },
+    { id: 3, name: 'Рапунцел и Флин', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Rapunzel, Rapunzel1], description: 'Комплект ключодържатели с героите Рапунцел и Флин.' },
+    { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [LionKing, LionKing1], description: 'Комплект ключодържатели с героите Нала и Симба.' },
+    { id: 5, name: 'Бъгс и Лола', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Bunny, Bunny1], description: 'Комплект ключодържатели с героите Бъгс и Лола.' },
+    { id: 6, name: 'Бел и Звяр', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Bella, Bella1], description: 'Комплект ключодържатели с героите Бела и Звяра.' },
+    { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '59.90 лв', price: '35.90 лв', imageUrl: [Christmas1, Christmas2, Christmas3, Christmas4, Christmas5, Christmas6], description: 'Коледен комплект включващ ключодържателите KeyCouple8 плюс пухкава играчка Джинджи.' }
 ];
 
 const ProductDetails = () => {
@@ -46,6 +46,12 @@ const ProductDetails = () => {
     const [cantAddZero, cantAddZeroToCart] = useState(false);
 
     const [showModal, setShowModal] = useState(false);
+
+    const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
+
+    const toggleDescription = () => {
+        setIsDescriptionOpen(!isDescriptionOpen);
+    };
 
     const handleOrderClick = () => {
         setShowModal(true); 
@@ -233,6 +239,12 @@ const ProductDetails = () => {
                     <button className="order-button" onClick={handleOrderClick}>Бърза поръчка</button>
                 </div>
 
+                <div className="product-description">
+                    <div onClick={toggleDescription} className="description-toggle">
+                        Описание на продукта {isDescriptionOpen ? "▲" : "▼"}
+                    </div>
+                    {isDescriptionOpen && <p className="description-text">{product.description}</p>}
+                </div>
 
             </div>
 
