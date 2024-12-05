@@ -428,7 +428,7 @@ form {
 
 
 .product-description {
-    margin-top: 20px;
+    margin-top: 70px;
     border-top: 1px solid #ddd;
     padding-top: 10px;
 }
@@ -454,7 +454,7 @@ form {
     line-height: 1.5;
     color: #555;
     animation: fadeIn 0.3s ease-in-out;
-    text-align: center;
+    text-align: left;
 }
 
 @media (min-width: 1024px) {
@@ -568,7 +568,7 @@ form {
     }
 
     .description-text{
-        text-align: center;
+        text-align: left;
     }
 
     .description-toggle {
