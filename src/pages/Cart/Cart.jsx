@@ -210,7 +210,7 @@ const Cart = () => {
                         <ul>
                             {cartItems.map(item => (
                                 <li key={item.id}>
-                                    {item.name} - {item.quantity} бр. - {(parseFloat(item.price.replace(/[^\d.-]/g, '')) * item.quantity).toFixed(2)} лв.
+                                    {item.name} - {item.quantity} бр. <br /> {(parseFloat(item.price.replace(/[^\d.-]/g, '')) * item.quantity).toFixed(2)} лв.
                                     <button onClick={() => removeFromCart(item.id)}>Премахни</button>
                                 </li>
                             ))}
