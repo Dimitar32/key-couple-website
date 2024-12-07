@@ -7,10 +7,10 @@ import Rapunzel from './Rapunzel.png';
 import LionKing from './LionKing.png';
 import Bunny from './Bunny.png';
 import Bella from './Bella.png';
-import Christmas from './Christmas.jpg';
+// import Christmas from './Christmas.jpg';
 
 const products = [
-    { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '', price: '35.99 лв', imageUrl: Christmas},
+    // { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '', price: '35.99 лв', imageUrl: Christmas},
     { id: 1, name: 'Ерик и Ариел', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Ariel },
     { id: 2, name: 'Шрек и Фиона', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Shrek },
     { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: LionKing },
@@ -36,6 +36,10 @@ const Products = () => {
                 <Link to={`/product/${product.id}`} key={product.id} className="product-link">
                     <div key={product.id} className="product-card">
                         <img src={product.imageUrl} alt={product.name} className="product-image" />
+                        <div class="discount-label">
+                            {/* <span>намаление</span> */}
+                            <span>-28%</span>
+                        </div>
                         <h3>{product.name}</h3>
                         <p className="old-price">{product.oldPrice}</p> {/* Показване на старата цена със зачеркване */}
                         <p className="new-price">{product.price}</p> {/* Показване на новата цена */}
