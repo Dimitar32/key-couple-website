@@ -209,12 +209,6 @@ const ProductDetails = () => {
             {/* <img src={product.imageUrl} alt={product.name} className="product-image" /> */}
             <div className="product-details">
             <h2>{product.name}</h2>
-                {/* <button className="description-toggle" onClick={toggleDescription}>
-                    {isDescriptionVisible ? 'Скрий описание' : 'Покажи описание'}
-                </button>
-                {isDescriptionVisible && <p className="product-description">{product.description}</p>} */}
-
-                {/* <p className="product-description">{product.description}</p> */}
                 <p className="old-price">Стара Цена: {product.oldPrice}</p>
                 <p className="product-price">Цена: {product.price}</p>
 

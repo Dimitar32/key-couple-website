@@ -34,7 +34,6 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     font-family: 'Lobster';
-    /* margin-left: 10%; */
 }
 
     .product-card:hover {
@@ -117,6 +116,25 @@ h3, p {
 
 .products-title {
     font-size: 30px;
+}
+
+
+.add-to-cart-button {
+    background-color: #f77fbe;
+    color: white;
+    font-size: 12px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.add-to-cart-button:hover {
+    background-color: #e91e63;
 }
 
 .discount-label {

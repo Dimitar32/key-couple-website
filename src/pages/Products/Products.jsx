@@ -1,4 +1,4 @@
-import React from 'react';
+import {/*useState,*/ React} from 'react';
 import { Link } from 'react-router-dom'; // Импортираме Link от react-router-dom
 import './Products.css';
 import Ariel from './Ariel.png';
@@ -29,6 +29,29 @@ const blurProducts = [
 ];
 
 const Products = () => {
+    // const [isAdded, setIsAdded] = useState(false);
+
+    // const handleAddToCart = (product, quantity, value) => {
+    //     if (product.id === 7 && !value) {
+    //         alert('Моля, изберете опция преди да добавите този продукт в количката.');
+    //         return;
+    //     }
+
+    //     addToCart(product, quantity, value); 
+
+    //     if (quantity > 0) {
+    //         setIsAdded(true);
+    //     } else if (quantity === 0) {
+    //         cantAddZeroToCart(true);
+    //     }
+
+    //     setTimeout(() => {
+    //         cantAddZeroToCart(false);
+    //         setIsAdded(false);
+    //     }, 1500);
+    // };
+
+
     return (
         <section id="products" className="products-section">
             <h2 className="products-title">Продукти</h2>
@@ -37,12 +60,12 @@ const Products = () => {
                     <div key={product.id} className="product-card">
                         <img src={product.imageUrl} alt={product.name} className="product-image" />
                         <div class="discount-label">
-                            {/* <span>намаление</span> */}
                             <span>-28%</span>
                         </div>
                         <h3>{product.name}</h3>
-                        <p className="old-price">{product.oldPrice}</p> {/* Показване на старата цена със зачеркване */}
-                        <p className="new-price">{product.price}</p> {/* Показване на новата цена */}
+                        <p className="old-price">{product.oldPrice}</p> 
+                        <p className="new-price">{product.price}</p>    
+                        {/* <button className="add-to-cart-button" onClick={handleAddToCart}>Добави</button> */}
                     </div>
                 </Link>
             ))}
@@ -50,14 +73,22 @@ const Products = () => {
                 <Link to={`/notavl`} key={product.id} className="product-link">
                 <div key={product.id} className="product-card-blur">
                     <img src={product.imageUrl} alt={product.name} className="product-image-blur" />
-                    {/* <div class="overlay"> */}
                         <h3>{product.name}</h3>
                         <p className="product-card-blur-old-price">{product.oldPrice}</p> {/* Показване на старата цена със зачеркване */}
                         <p className="new-price">{product.price}</p> {/* Показване на новата цена */}
-                    {/* </div> */}
                 </div>
                 </Link>
             ))}
+        
+        {/* {isAdded && (
+            <div className="modal">
+                <div className="modal-content">
+                    <p>
+                        Успешно добавено в количката!
+                    </p>
+                </div>
+            </div>
+        )} */}
         </section>
     );
 };
