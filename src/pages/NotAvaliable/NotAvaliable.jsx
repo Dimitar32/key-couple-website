@@ -1,5 +1,5 @@
 import React from 'react';
-import './NotAvaliable.css'; // Импорт на CSS стиловете
+import './NotAvaliable.css'; 
 
 const NotAvaliable = () => {
     return (

@@ -298,22 +298,6 @@ const ProductDetails = () => {
                 <div className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={handleCloseModal}> &times;{/*times;*/}</span>
-                        {/* <h2>Попълни данните за поръчка</h2> */}
-                        {/* <form className="order-form">
-                            <label>
-                                Име:
-                                <input type="text" name="name" required />
-                            </label>
-                            <label>
-                                Адрес:
-                                <input type="text" name="address" required />
-                            </label>
-                            <label>
-                                Телефон:
-                                <input type="tel" name="phone" required />
-                            </label>
-                            <button type="submit">Изпрати поръчка</button>
-                        </form> */}
                         <form  onSubmit={handleSubmit} className="order-form">
                             <label>
                                 Име:

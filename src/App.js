@@ -16,17 +16,6 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import ScrollTop from './ScrollTop.js';
 
 function App() {
-  // const [cartItems, setCartItems] = useState([]);
-
-  // const addToCart = (product) => {
-  //   setCartItems([...cartItems, product]);
-  // };
-
-  // const sendOrder = () => {
-  //   console.log('Поръчката е изпратена!', cartItems);
-  //   setCartItems([]);
-  // };
-
   return (
     <CartProvider>
       <Router>
