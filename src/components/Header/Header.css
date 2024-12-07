@@ -40,6 +40,18 @@ nav {
             text-decoration: underline; /* Добавя подчертаване при ховър */
 }
 
+.logo {
+    text-decoration: none; /* Remove underline */
+    color: white; /* Set text color to white */
+}
+
+.logo h1 {
+    margin: 15px; /* Премахва маржините на заглавието */
+    font-size: 35px; /* Задава размер на шрифта на заглавието */
+    font-family: "Permanent Marker", cursive;
+    font-weight: 800;
+    font-style: normal;
+}
 
 /* Медийни заявки */
 @media (max-width: 992px) {
