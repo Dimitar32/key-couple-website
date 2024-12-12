@@ -98,7 +98,7 @@ const ProductDetails = () => {
         postalCode: '',
         country: '',
         order: product.name,
-        quantity: 0,
+        quantity: 1,
         additionalInfo: '',
         option: product.option
     });
@@ -145,7 +145,7 @@ const ProductDetails = () => {
             postalCode: '',
             country: '',
             order: product.name,
-            quantity: 0,
+            quantity: 1,
             additionalInfo: '',
             option: product.option
         });
@@ -346,7 +346,7 @@ const ProductDetails = () => {
                                     name="quantity"
                                     value={formData.quantity}
                                     onChange={handleChange}
-                                    min="0"
+                                    min="1"
                                     required
                                 />
                             </label>
