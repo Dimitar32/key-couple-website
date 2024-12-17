@@ -24,7 +24,9 @@ import Christmas4 from '../Products/Christmas4.jpg';
 import Christmas5 from '../Products/Christmas5.jpg';
 import Christmas6 from '../Products/Christmas6.jpg';
 import McQueen from '../Products/McQueen1.jpg';
+import McQueen2 from '../Products/McQueen2.jpg';
 import LadyAndTheTramp from '../Products/LadyAndTheTramp1.png';
+import LadyAndTheTramp2 from '../Products/LadyAndTheTramp2.jpg';
 import { CartContext } from '../contexts/CartContext'; 
 
 const products = [
@@ -53,11 +55,11 @@ const products = [
                         съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
                         Вашата любов е уникална, затова я отпразнувайте с нещо специално!` },
     { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '59.90 лв', price: '35.90 лв', imageUrl: [Christmas1, Christmas2, Christmas3, Christmas4, Christmas5, Christmas6], description: 'Коледен комплект включващ ключодържателите KeyCouple8 плюс пухкава играчка Джинджи.' },
-    { id: 8, name: 'Макуин и Сали', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [McQueen], description: `
+    { id: 8, name: 'Макуин и Сали', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [McQueen, McQueen2], description: `
         Подарете магическо докосване на връзката си с тези уникални ключодържатели за двойки, вдъхновени от незабравимите герои Макуин и Сали. Комплектът включва два ключодържателя и поставка за тях,
         съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
         Вашата любов е уникална, затова я отпразнувайте с нещо специално!` },
-    { id: 9, name: 'Лейди и Скитника', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [LadyAndTheTramp], description: `
+    { id: 9, name: 'Лейди и Скитника', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [LadyAndTheTramp, LadyAndTheTramp2], description: `
         Подарете магическо докосване на връзката си с тези уникални ключодържатели за двойки, вдъхновени от незабравимите герои Лейди и Скитника. Комплектът включва два ключодържателя и поставка за тях,
         съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
         Вашата любов е уникална, затова я отпразнувайте с нещо специално!` }
