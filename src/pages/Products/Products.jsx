@@ -18,7 +18,7 @@ const products = [
     { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: LionKing },
     { id: 3, name: 'Рапунцел и Флин', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Rapunzel },
     { id: 5, name: 'Бъгс и Лола', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Bunny },
-    { id: 8, name: 'Макуин и Сали', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: McQueen },
+    // { id: 8, name: 'Макуин и Сали', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: McQueen },
     { id: 9, name: 'Лейди и Скитника', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: LadyAndTheTramp }
     // { id: 6, name: 'Бел и Звяр', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Bella }
 ];
@@ -26,7 +26,7 @@ const products = [
 const blurProducts = [
     // { id: 1, name: 'Ерик и Ариел', oldPrice: '35.99 лв', price: 'Очаквайте скоро', imageUrl: Ariel },
     // { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '59.90 лв', price: 'Очаквайте скоро', imageUrl: ChristmasQuestionMark},
-    // { id: 8, name: 'Макуин и Сали', oldPrice: '??.?? лв', price: 'Скоро!', imageUrl: McQueen },
+    { id: 8, name: 'Макуин и Сали', oldPrice: '??.?? лв', price: 'Изчерпано', imageUrl: McQueen },
     // { id: 9, name: 'Лейди и Скитника', oldPrice: '??.?? лв', price: 'Скоро!', imageUrl: LadyAndTheTramp },
     // { id: 3, name: 'Рапунцел и Флин', oldPrice: '??.?? лв', price: 'Изчерпано', imageUrl: Rapunzel },
     { id: 2, name: 'Шрек и Фиона', oldPrice: '??.?? лв', price: 'Изчерпано', imageUrl: Shrek },
