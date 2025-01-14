@@ -15,12 +15,12 @@ const products = [
     // { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '', price: '35.99 лв', imageUrl: Christmas},
     { id: 1, name: 'Ерик и Ариел', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Ariel },
     // { id: 2, name: 'Шрек и Фиона', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Shrek },
-    { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: LionKing },
+    // { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: LionKing },
     { id: 3, name: 'Рапунцел и Флин', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Rapunzel },
     // { id: 5, name: 'Бъгс и Лола', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Bunny },
     // { id: 8, name: 'Макуин и Сали', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: McQueen },
-    { id: 9, name: 'Лейди и Скитника', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: LadyAndTheTramp }
-    // { id: 6, name: 'Бел и Звяр', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Bella }
+    { id: 9, name: 'Лейди и Скитника', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: LadyAndTheTramp },
+    { id: 6, name: 'Бел и Звяр', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Bella }
 ];
 
 const blurProducts = [
@@ -30,9 +30,9 @@ const blurProducts = [
     // { id: 9, name: 'Лейди и Скитника', oldPrice: '??.?? лв', price: 'Скоро!', imageUrl: LadyAndTheTramp },
     // { id: 3, name: 'Рапунцел и Флин', oldPrice: '??.?? лв', price: 'Изчерпано', imageUrl: Rapunzel },
     { id: 2, name: 'Шрек и Фиона', oldPrice: '??.?? лв', price: 'Изчерпано', imageUrl: Shrek },
-    // { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: 'Очаквайте скоро', imageUrl: LionKing },
-    { id: 5, name: 'Бъгс и Лола', oldPrice: '??.?? лв', price: 'Изчерпано', imageUrl: Bunny },
-    { id: 6, name: 'Бел и Звяр', oldPrice: '??.?? лв', price: 'Изчерпано', imageUrl: Bella }
+    { id: 4, name: 'Нала и Симба', oldPrice: '??.?? лв', price: 'Изчерпано', imageUrl: LionKing },
+    { id: 5, name: 'Бъгс и Лола', oldPrice: '??.?? лв', price: 'Изчерпано', imageUrl: Bunny }//,
+    // { id: 6, name: 'Бел и Звяр', oldPrice: '??.?? лв', price: 'Изчерпано', imageUrl: Bella }
 ];
 
 const Products = () => {
