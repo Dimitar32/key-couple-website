@@ -57,7 +57,7 @@ const OrderForm = () => {
             order: orderDetails,
         };
 
-        emailjs.send('service_b06m24g', 'template_mk02aun', emailData , 'mjkXxA3GKaz2EgF9X')
+        emailjs.send('service_b06m24g', 'template_mk02aun', emailData , 'PLenflNoe6IDfFa9G')
             .then((response) => {
                 // console.log('SUCCESS!', response.status, response.text);
                 // alert('Вашата поръчка е изпратена успешно!');

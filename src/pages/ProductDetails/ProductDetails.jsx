@@ -121,7 +121,7 @@ const ProductDetails = () => {
 
         e.preventDefault();
 
-        emailjs.send('service_b06m24g', 'template_mk02aun', formData, 'mjkXxA3GKaz2EgF9X')
+        emailjs.send('service_b06m24g', 'template_mk02aun', formData, 'PLenflNoe6IDfFa9G')
             .then((response) => {
                 // console.log('SUCCESS!', response.status, response.text);
                 // alert('Вашата поръчка е изпратена успешно!');
