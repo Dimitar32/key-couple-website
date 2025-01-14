@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
+import useEcontOffices from '../../hooks/useEcontOffices';  // Importing the custom hook
 import emailjs from 'emailjs-com';
 import './ProductDetails.css';
 import Ariel from '../Products/Ariel.png';
@@ -79,6 +80,10 @@ const ProductDetails = () => {
 
     const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
 
+    const [cityFilter, setCityFilter] = useState('');
+
+    const { offices } = useEcontOffices();
+
     const toggleDescription = () => {
         setIsDescriptionOpen(!isDescriptionOpen);
     };
@@ -107,11 +112,24 @@ const ProductDetails = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
+    
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: value,  // Update only the specific field
+            ...(name === "office" && { address: value }) // Update address ONLY when changing office
+        }));
     };
+
+    const handleCityFilterChange = (e) => {
+        setCityFilter(e.target.value);
+    };
+
+    const filteredOffices = offices.filter((office) => {
+        const fullAddress = office.address?.fullAddress?.toLowerCase().trim() || "";
+        const searchInput = cityFilter.toLowerCase().trim();
+        
+        return fullAddress.includes(searchInput);
+    });
 
     const handleSubmit = (e) => {
         if (product.id === 7 && !formData.option) {
@@ -121,7 +139,13 @@ const ProductDetails = () => {
 
         e.preventDefault();
 
-        emailjs.send('service_b06m24g', 'template_mk02aun', formData, 'PLenflNoe6IDfFa9G')
+        const orderDetails = (`Продукт: ${product.name}, Количество: ${formData.quantity}` + (product.option ? `, Option: ${product.option}` : ''));
+         
+        formData.city = cityFilter;
+
+        const emailData = { ...formData, order: orderDetails };
+
+        emailjs.send('service_b06m24g', 'template_mk02aun', emailData, 'PLenflNoe6IDfFa9G')
             .then((response) => {
                 // console.log('SUCCESS!', response.status, response.text);
                 // alert('Вашата поръчка е изпратена успешно!');
@@ -311,67 +335,75 @@ const ProductDetails = () => {
                     <div className="modal-content">
                         <span className="close" onClick={handleCloseModal}> &times;{/*times;*/}</span>
                         <form  onSubmit={handleSubmit} className="order-form">
-                            <label>
-                                Име:
-                                <input 
-                                    type="text" 
-                                    name="firstName" 
-                                    value={formData.firstName} 
-                                    onChange={handleChange} 
-                                    required 
+                            <div className="form-group">
+                                <label>
+                                    Име:
+                                    <input 
+                                        type="text" 
+                                        name="firstName" 
+                                        value={formData.firstName} 
+                                        onChange={handleChange} 
+                                        required 
+                                        />
+                                </label>
+                                <label>
+                                    Фамилия:
+                                    <input 
+                                        type="text" 
+                                        name="lastName" 
+                                        value={formData.lastName} 
+                                        onChange={handleChange} 
+                                        required 
+                                        />
+                                </label>
+                                <label>
+                                    Телефон:
+                                    <input
+                                        type="text"
+                                        name="phone"
+                                        value={formData.phone}
+                                        onChange={handleChange}
+                                        required
                                     />
-                            </label>
-                            <label>
-                                Фамилия:
-                                <input 
-                                    type="text" 
-                                    name="lastName" 
-                                    value={formData.lastName} 
-                                    onChange={handleChange} 
-                                    required 
+                                </label>
+                                <label>
+                                    Брой {product.name} :
+                                    <input
+                                        type="number"
+                                        name="quantity"
+                                        value={formData.quantity}
+                                        onChange={handleChange}
+                                        min="1"
+                                        required
                                     />
-                            </label>
-                            <label>
-                                Телефон:
-                                <input
-                                    type="text"
-                                    name="phone"
-                                    value={formData.phone}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </label>
-                            <label>
-                                Брой {product.name} :
-                                <input
-                                    type="number"
-                                    name="quantity"
-                                    value={formData.quantity}
-                                    onChange={handleChange}
-                                    min="1"
-                                    required
-                                />
-                            </label>
-                            <label>
-                                Адрес на офис на Еконт:
-                                <input
-                                    type="text"
-                                    name="address"
-                                    value={formData.address}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </label>
-                            <label>
-                                Град:
-                                <input
-                                    type="text"
-                                    name="city"
-                                    value={formData.city}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </label>
+                                </label>
+                                <label>Търси офис по град
+                                    <input 
+                                        type="text" 
+                                        value={cityFilter} 
+                                        onChange={handleCityFilterChange} 
+                                        placeholder="Например: София" 
+                                    />
+                                </label>
+                                <label>Офис на Еконт</label>
+                                    <select
+                                        name="office"
+                                        value={formData.address}
+                                        onChange={handleChange}
+                                        required
+                                        >
+                                        <option value="">Избери офис</option>
+                                        {filteredOffices.length > 0 ? (
+                                            filteredOffices.map((office) => (
+                                                <option key={office.code} value={'Име на офиса: ' + office.name + ' ; Адрес: ' + office.address.fullAddress}>
+                                                    {office.name || "Няма име"} - {office.address.settlement?.name || office.address.fullAddress || "Няма адрес"}
+                                                </option>
+                                            ))
+                                        ) : (
+                                            <option value="">Няма намерени офиси</option>
+                                        )}
+                                    </select>
+                            </div>
                             <button type="submit">Поръчай</button>
                         </form>
                     </div>

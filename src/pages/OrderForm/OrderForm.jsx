@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import emailjs from 'emailjs-com';
 import { CartContext } from '../contexts/CartContext'; // Импортирай контекста за количката
+import useEcontOffices from '../../hooks/useEcontOffices';  // Importing the custom hook
 import './OrderForm.css'; // Стилове за формата
 
 const OrderForm = () => {
@@ -8,6 +9,8 @@ const OrderForm = () => {
 
     const [isOrdered, setIsOrdered] = useState(false);
     const { cartItems, removeFromCart, clearCart } = useContext(CartContext); // Вземаме продуктите и функцията за премахване от контекста
+    const [cityFilter, setCityFilter] = useState('');
+
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -15,7 +18,8 @@ const OrderForm = () => {
         address: '',
         city: '',
         order: '',
-        option: ''
+        option: '',
+        note: ''
     });
 
     // const [formData, setFormData] = useState({
@@ -30,12 +34,17 @@ const OrderForm = () => {
     //     additionalInfo: ''
     // });
 
+    // Using the custom hook to fetch Econt offices
+    const { offices } = useEcontOffices();
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
+    
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: value,  // Update only the specific field
+            ...(name === "office" && { address: value }) // Update address ONLY when changing office
+        }));
     };
 
     // const handleSubmit = (e) => {
@@ -45,6 +54,17 @@ const OrderForm = () => {
     // };
 
     
+    const handleCityFilterChange = (e) => {
+        setCityFilter(e.target.value);
+    };
+
+    const filteredOffices = offices.filter((office) => {
+        const fullAddress = office.address?.fullAddress?.toLowerCase().trim() || "";
+        const searchInput = cityFilter.toLowerCase().trim();
+        
+        return fullAddress.includes(searchInput);
+    });
+    
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -52,6 +72,8 @@ const OrderForm = () => {
         .map(item => `Name: ${item.name}, Quantity: ${item.quantity}, Option: ${item.option || 'None'}`)
         .join('\n');
     
+        formData.city = cityFilter;
+
         const emailData = {
             ...formData,
             order: orderDetails,
@@ -86,7 +108,8 @@ const OrderForm = () => {
             address: '',
             city: '',
             order: '',
-            option: ''
+            option: '',
+            note: ''
         });
 
         clearCart();
@@ -132,27 +155,50 @@ const OrderForm = () => {
                         required 
                     />
                 </div>
+                
                 <div className="form-group">
-                    <label>Офис на Еконт</label>
+                    <label>Търси офис по град</label>
                     <input 
                         type="text" 
-                        name="address" 
-                        value={formData.address} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Град</label>
-                    <input 
-                        type="text" 
-                        name="city" 
-                        value={formData.city} 
-                        onChange={handleChange} 
-                        required 
+                        value={cityFilter} 
+                        onChange={handleCityFilterChange} 
+                        placeholder="Например: София" 
                     />
                 </div>
 
+                <div className="form-group">
+                    <label>Офис на Еконт</label>
+                    <select
+                        name="office"
+                        value={formData.address}
+                        onChange={handleChange}
+                        required
+                    >
+                        <option value="">Избери офис</option>
+                        {filteredOffices.length > 0 ? (
+                            filteredOffices.map((office) => (
+                                <option key={office.code} value={'Име на офиса: ' + office.name + ' ; Адрес: ' + office.address.fullAddress}>
+                                    {office.name || "Няма име"} - {office.address.settlement?.name || office.address.fullAddress || "Няма адрес"}
+                                </option>
+                            ))
+                        ) : (
+                            <option value="">Няма намерени офиси</option>
+                        )}
+                    </select>
+                </div>
+
+                <div className="form-group">
+                    <label>Бележка</label>
+                    <textarea 
+                        name="note" 
+                        value={formData.note} 
+                        onChange={handleChange} 
+                        placeholder="Ако искате до личен адрес, не намирате офиса на Еконт или имате въпрос може да го оставите тука"
+                        rows="5" 
+                        cols="35"
+                    />
+                </div>
+                
                 {/* Показваме продуктите в количката */}
                 <div className="cart-items">
                     <h3>Вашата количка</h3>
