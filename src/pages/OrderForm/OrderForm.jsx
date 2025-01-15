@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
-import emailjs from 'emailjs-com';
+// import emailjs from 'emailjs-com';
 import { CartContext } from '../contexts/CartContext'; // Импортирай контекста за количката
-import useEcontOffices from '../../hooks/useEcontOffices';  // Importing the custom hook
-import './OrderForm.css'; // Стилове за формата
+import useEcontOffices from '../../hooks/useEcontOffices';  
+import useSaveOrder from "../../hooks/useSaveOrder";
+import './OrderForm.css'; 
 
 const OrderForm = () => {
-    let errOrder = "";
+    // let errOrder = "";
 
     const [isOrdered, setIsOrdered] = useState(false);
     const { cartItems, removeFromCart, clearCart } = useContext(CartContext); // Вземаме продуктите и функцията за премахване от контекста
@@ -22,6 +23,21 @@ const OrderForm = () => {
         note: ''
     });
 
+    const { submitOrder } = useSaveOrder();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (cartItems.length === 0) {
+            alert("Количката е празна!");
+            return;
+        }
+
+        await submitOrder(formData, cartItems, cityFilter, clearCart);
+        setIsOrdered(true);
+        setTimeout(() => setIsOrdered(false), 5000);
+    };
+    
     // const [formData, setFormData] = useState({
     //     fullName: '',
     //     phone: '',
@@ -34,7 +50,6 @@ const OrderForm = () => {
     //     additionalInfo: ''
     // });
 
-    // Using the custom hook to fetch Econt offices
     const { offices } = useEcontOffices();
 
     const handleChange = (e) => {
@@ -42,8 +57,8 @@ const OrderForm = () => {
     
         setFormData((prevFormData) => ({
             ...prevFormData,
-            [name]: value,  // Update only the specific field
-            ...(name === "office" && { address: value }) // Update address ONLY when changing office
+            [name]: value,  
+            ...(name === "office" && { address: value }) 
         }));
     };
 
@@ -65,55 +80,55 @@ const OrderForm = () => {
         return fullAddress.includes(searchInput);
     });
     
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
 
-        const orderDetails = cartItems
-        .map(item => `Name: ${item.name}, Quantity: ${item.quantity}, Option: ${item.option || 'None'}`)
-        .join('\n');
+    //     const orderDetails = cartItems
+    //     .map(item => `Name: ${item.name}, Quantity: ${item.quantity}, Option: ${item.option || 'None'}`)
+    //     .join('\n');
     
-        formData.city = cityFilter;
+    //     formData.city = cityFilter;
 
-        const emailData = {
-            ...formData,
-            order: orderDetails,
-        };
+    //     const emailData = {
+    //         ...formData,
+    //         order: orderDetails,
+    //     };
 
-        emailjs.send('service_b06m24g', 'template_mk02aun', emailData , 'PLenflNoe6IDfFa9G')
-            .then((response) => {
-                // console.log('SUCCESS!', response.status, response.text);
-                // alert('Вашата поръчка е изпратена успешно!');
-            })
-            .catch((err) => {
-                errOrder = err;
+    //     emailjs.send('service_b06m24g', 'template_mk02aun', emailData , 'PLenflNoe6IDfFa9G')
+    //         .then((response) => {
+    //             // console.log('SUCCESS!', response.status, response.text);
+    //             // alert('Вашата поръчка е изпратена успешно!');
+    //         })
+    //         .catch((err) => {
+    //             errOrder = err;
 
-                console.error('FAILED...', err);
-                alert('Грешка при изпращането на поръчката.');
-            });
+    //             console.error('FAILED...', err);
+    //             alert('Грешка при изпращането на поръчката.');
+    //         });
             
-        if (errOrder === "") 
-        {
-            setIsOrdered(true);
+    //     if (errOrder === "") 
+    //     {
+    //         setIsOrdered(true);
     
-            // Автоматично скриване на съобщението след 3 секунди
-            setTimeout(() => {
-                setIsOrdered(false);
-            }, 5000);
-        }
+    //         // Автоматично скриване на съобщението след 3 секунди
+    //         setTimeout(() => {
+    //             setIsOrdered(false);
+    //         }, 5000);
+    //     }
 
-        setFormData({
-            firstName: '',
-            lastName: '',
-            phone: '',
-            address: '',
-            city: '',
-            order: '',
-            option: '',
-            note: ''
-        });
+    //     setFormData({
+    //         firstName: '',
+    //         lastName: '',
+    //         phone: '',
+    //         address: '',
+    //         city: '',
+    //         order: '',
+    //         option: '',
+    //         note: ''
+    //     });
 
-        clearCart();
-    };
+    //     clearCart();
+    // };
 
 
     const handleRemove = (id) => {

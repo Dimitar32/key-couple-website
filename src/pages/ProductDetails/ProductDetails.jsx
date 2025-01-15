@@ -3,8 +3,9 @@ import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
-import useEcontOffices from '../../hooks/useEcontOffices';  // Importing the custom hook
-import emailjs from 'emailjs-com';
+import useEcontOffices from '../../hooks/useEcontOffices';  
+import useSaveOrder from "../../hooks/useSaveOrder";
+// import emailjs from 'emailjs-com';
 import './ProductDetails.css';
 import Ariel from '../Products/Ariel.png';
 import Ariel1 from '../Products/Ariel1.jpg';
@@ -18,12 +19,12 @@ import Bunny from '../Products/Bunny.png';
 import Bunny1 from '../Products/Bunny1.jpg';
 import Bella from '../Products/Bella.png';
 import Bella1 from '../Products/Bella1.jpg';
-import Christmas1 from '../Products/Christmas1.jpg';
-import Christmas2 from '../Products/Christmas2.jpg';
-import Christmas3 from '../Products/Christmas3.jpg';
-import Christmas4 from '../Products/Christmas4.jpg';
-import Christmas5 from '../Products/Christmas5.jpg';
-import Christmas6 from '../Products/Christmas6.jpg';
+// import Christmas1 from '../Products/Christmas1.jpg';
+// import Christmas2 from '../Products/Christmas2.jpg';
+// import Christmas3 from '../Products/Christmas3.jpg';
+// import Christmas4 from '../Products/Christmas4.jpg';
+// import Christmas5 from '../Products/Christmas5.jpg';
+// import Christmas6 from '../Products/Christmas6.jpg';
 import McQueen from '../Products/McQueen1.jpg';
 import McQueen2 from '../Products/McQueen2.jpg';
 import LadyAndTheTramp from '../Products/LadyAndTheTramp1.png';
@@ -35,7 +36,7 @@ const products = [
                         Подарете магическо докосване на връзката си с тези уникални ключодържатели за двойки, вдъхновени от незабравимите герои Ерик и Ариел. Комплектът включва два ключодържателя и поставка за тях,
                         съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
                         Вашата любов е уникална, затова я отпразнувайте с нещо специално!` },
-    { id: 2, name: 'Шрек и Фиона', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Shrek, Shrek1], description: `
+    { id: 6, name: 'Шрек и Фиона', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Shrek, Shrek1], description: `
                         Подарете магическо докосване на връзката си с тези уникални ключодържатели за двойки, вдъхновени от незабравимите герои Шрек и Фиона. Комплектът включва два ключодържателя и поставка за тях,
                         съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
                         Вашата любов е уникална, затова я отпразнувайте с нещо специално!` },
@@ -43,31 +44,31 @@ const products = [
                         Подарете магическо докосване на връзката си с тези уникални ключодържатели за двойки, вдъхновени от незабравимите герои Рапунцел и Флин. Комплектът включва два ключодържателя и поставка за тях,
                         съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
                         Вашата любов е уникална, затова я отпразнувайте с нещо специално!` },
-    { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [LionKing, LionKing1], description: `
+    { id: 2, name: 'Нала и Симба', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [LionKing, LionKing1], description: `
                         Подарете магическо докосване на връзката си с тези уникални ключодържатели за двойки, вдъхновени от незабравимите герои Нала и Симба. Комплектът включва два ключодържателя и поставка за тях,
                         съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
                         Вашата любов е уникална, затова я отпразнувайте с нещо специално!` },
-    { id: 5, name: 'Бъгс и Лола', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Bunny, Bunny1], description: `
+    { id: 8, name: 'Бъгс и Лола', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Bunny, Bunny1], description: `
                         Подарете магическо докосване на връзката си с тези уникални ключодържатели за двойки, вдъхновени от незабравимите герои Бъгс и Лола. Комплектът включва два ключодържателя и поставка за тях,
                         съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
                         Вашата любов е уникална, затова я отпразнувайте с нещо специално!` },
-    { id: 6, name: 'Бел и Звяр', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Bella, Bella1], description: `
+    { id: 7, name: 'Бел и Звяр', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Bella, Bella1], description: `
                         Подарете магическо докосване на връзката си с тези уникални ключодържатели за двойки, вдъхновени от незабравимите герои Бел и Звяр. Комплектът включва два ключодържателя и поставка за тях,
                         съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
                         Вашата любов е уникална, затова я отпразнувайте с нещо специално!` },
-    { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '59.90 лв', price: '35.90 лв', imageUrl: [Christmas1, Christmas2, Christmas3, Christmas4, Christmas5, Christmas6], description: 'Коледен комплект включващ ключодържателите KeyCouple8 плюс пухкава играчка Джинджи.' },
-    { id: 8, name: 'Макуин и Сали', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [McQueen, McQueen2], description: `
+    // { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '59.90 лв', price: '35.90 лв', imageUrl: [Christmas1, Christmas2, Christmas3, Christmas4, Christmas5, Christmas6], description: 'Коледен комплект включващ ключодържателите KeyCouple8 плюс пухкава играчка Джинджи.' },
+    { id: 5, name: 'Макуин и Сали', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [McQueen, McQueen2], description: `
         Подарете магическо докосване на връзката си с тези уникални ключодържатели за двойки, вдъхновени от незабравимите герои Макуин и Сали. Комплектът включва два ключодържателя и поставка за тях,
         съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
         Вашата любов е уникална, затова я отпразнувайте с нещо специално!` },
-    { id: 9, name: 'Лейди и Скитника', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [LadyAndTheTramp, LadyAndTheTramp2], description: `
+    { id: 4, name: 'Лейди и Скитника', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [LadyAndTheTramp, LadyAndTheTramp2], description: `
         Подарете магическо докосване на връзката си с тези уникални ключодържатели за двойки, вдъхновени от незабравимите герои Лейди и Скитника. Комплектът включва два ключодържателя и поставка за тях,
         съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
         Вашата любов е уникална, затова я отпразнувайте с нещо специално!` }
 ];
 
 const ProductDetails = () => {
-    let errOrder = "";
+    // let errOrder = "";
     const { id } = useParams();
     const product = products.find(p => p.id === parseInt(id));
     const [quantity, setQuantity] = useState(1); 
@@ -115,8 +116,8 @@ const ProductDetails = () => {
     
         setFormData((prevFormData) => ({
             ...prevFormData,
-            [name]: value,  // Update only the specific field
-            ...(name === "office" && { address: value }) // Update address ONLY when changing office
+            [name]: value,  
+            ...(name === "office" && { address: value }) 
         }));
     };
 
@@ -131,51 +132,61 @@ const ProductDetails = () => {
         return fullAddress.includes(searchInput);
     });
 
-    const handleSubmit = (e) => {
-        if (product.id === 7 && !formData.option) {
-            alert('Моля, изберете опция преди да добавите този продукт в количката.');
-            return;
-        }
-
+    const { submitOrder } = useSaveOrder();
+    
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const orderDetails = (`Продукт: ${product.name}, Количество: ${formData.quantity}` + (product.option ? `, Option: ${product.option}` : ''));
-         
-        formData.city = cityFilter;
-
-        const emailData = { ...formData, order: orderDetails };
-
-        emailjs.send('service_b06m24g', 'template_mk02aun', emailData, 'PLenflNoe6IDfFa9G')
-            .then((response) => {
-                // console.log('SUCCESS!', response.status, response.text);
-                // alert('Вашата поръчка е изпратена успешно!');
-            })
-            .catch((err) => {
-                errOrder = err;
-                console.error('FAILED...', err);
-                alert('Грешка при изпращането на поръчката.');
-            });
-        
-        if (errOrder === '')
-        {
-            handleCloseModal();
-            handleSubmitFastOrder(product);
-        }
-
-        setFormData({
-            firstName: '',
-            lastName: '',
-            phone: '',
-            address: '',
-            city: '',
-            postalCode: '',
-            country: '',
-            order: product.name,
-            quantity: 1,
-            additionalInfo: '',
-            option: product.option
-        });
+        const orderItems = [{ id: product.id, name: product.name, quantity: formData.quantity, option: product.option, price: product.price }];
+        await submitOrder(formData, orderItems, cityFilter);
+        handleCloseModal();
+        handleSubmitFastOrder(product);
     };
+
+    // const handleSubmit = (e) => {
+    //     if (product.id === 7 && !formData.option) {
+    //         alert('Моля, изберете опция преди да добавите този продукт в количката.');
+    //         return;
+    //     }
+
+    //     e.preventDefault();
+
+    //     const orderDetails = (`Продукт: ${product.name}, Количество: ${formData.quantity}` + (product.option ? `, Option: ${product.option}` : ''));
+         
+    //     formData.city = cityFilter;
+
+    //     const emailData = { ...formData, order: orderDetails };
+
+    //     emailjs.send('service_b06m24g', 'template_mk02aun', emailData, 'PLenflNoe6IDfFa9G')
+    //         .then((response) => {
+    //             // console.log('SUCCESS!', response.status, response.text);
+    //             // alert('Вашата поръчка е изпратена успешно!');
+    //         })
+    //         .catch((err) => {
+    //             errOrder = err;
+    //             console.error('FAILED...', err);
+    //             alert('Грешка при изпращането на поръчката.');
+    //         });
+        
+    //     if (errOrder === '')
+    //     {
+    //         handleCloseModal();
+    //         handleSubmitFastOrder(product);
+    //     }
+
+    //     setFormData({
+    //         firstName: '',
+    //         lastName: '',
+    //         phone: '',
+    //         address: '',
+    //         city: '',
+    //         postalCode: '',
+    //         country: '',
+    //         order: product.name,
+    //         quantity: 1,
+    //         additionalInfo: '',
+    //         option: product.option
+    //     });
+    // };
 
     const { addToCart } = useContext(CartContext); 
 
@@ -197,10 +208,10 @@ const ProductDetails = () => {
 
     // Функция за добавяне в количката и показване на съобщението
     const handleAddToCart = (product, quantity, value) => {
-        if (product.id === 7 && !value) {
-            alert('Моля, изберете опция преди да добавите този продукт в количката.');
-            return;
-        }
+        // if (product.id === 7 && !value) {
+        //     alert('Моля, изберете опция преди да добавите този продукт в количката.');
+        //     return;
+        // }
 
         addToCart(product, quantity, value); // Извиква съществуващата функция за добавяне в количката
 
@@ -260,9 +271,8 @@ const ProductDetails = () => {
                     />
                 </label>
                 
-                {product.id === 7 && (
+                {/* {product.id === 7 && (
                     <label className="product-options-dropdown-label">
-                        {/*Опции:*/}
                         <select 
                             className="product-options-dropdown" 
                             value={formData.option || ''} 
@@ -280,7 +290,7 @@ const ProductDetails = () => {
                             <option value="Бъгс и Лола">Бъгс и Лола</option>
                         </select>
                     </label>
-                )}
+                )} */}
 
                 <div className="product-buttons">
                     <button className="order-button" onClick={() => handleAddToCart(product, quantity, formData.option)}>Добави в количката</button>
