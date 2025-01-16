@@ -89,7 +89,7 @@ const Products = () => {
     
         fetchProducts(); // Fetch all products by default
     
-    }, []); // Runs only on mount
+    }, []); 
     
     return (
         <section id="products" className="products-section">
@@ -113,8 +113,8 @@ const Products = () => {
                 <div key={product.id} className="product-card-blur">
                     <img src={product.imageUrl} alt={product.name} className="product-image-blur" />
                         <h3>{product.productname}</h3>
-                        <p className="product-card-blur-old-price">??.??лв.</p> {/* Показване на старата цена със зачеркване */}
-                        <p className="new-price">Очаквайте скоро!</p> {/* Показване на новата цена */}
+                        <p className="product-card-blur-old-price">??.??лв.</p> 
+                        <p className="new-price">Очаквайте скоро!</p> 
                 </div>
                 </Link>
             ))}

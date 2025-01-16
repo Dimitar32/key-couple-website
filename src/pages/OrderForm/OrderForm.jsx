@@ -1,15 +1,15 @@
 import React, { useContext, useState } from 'react';
-// import emailjs from 'emailjs-com';
-import { CartContext } from '../contexts/CartContext'; // Импортирай контекста за количката
+import { useNavigate } from "react-router-dom";
+import { CartContext } from '../contexts/CartContext'; 
 import useEcontOffices from '../../hooks/useEcontOffices';  
 import useSaveOrder from "../../hooks/useSaveOrder";
 import './OrderForm.css'; 
 
 const OrderForm = () => {
-    // let errOrder = "";
+    const navigate = useNavigate();
 
     const [isOrdered, setIsOrdered] = useState(false);
-    const { cartItems, removeFromCart, clearCart } = useContext(CartContext); // Вземаме продуктите и функцията за премахване от контекста
+    const { cartItems, removeFromCart, clearCart } = useContext(CartContext); 
     const [cityFilter, setCityFilter] = useState('');
 
     const [formData, setFormData] = useState({
@@ -35,20 +35,12 @@ const OrderForm = () => {
 
         await submitOrder(formData, cartItems, cityFilter, clearCart);
         setIsOrdered(true);
-        setTimeout(() => setIsOrdered(false), 5000);
+        
+        setTimeout(() => {
+            setIsOrdered(false);
+            navigate("/"); 
+        }, 5000); 
     };
-    
-    // const [formData, setFormData] = useState({
-    //     fullName: '',
-    //     phone: '',
-    //     address: '',
-    //     city: '',
-    //     postalCode: '',
-    //     country: '',
-    //     name: product.name,
-    //     quantity: 0,
-    //     additionalInfo: ''
-    // });
 
     const { offices } = useEcontOffices();
 
@@ -61,13 +53,6 @@ const OrderForm = () => {
             ...(name === "office" && { address: value }) 
         }));
     };
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     // Тук можеш да обработиш данните, например да ги изпратиш на API
-    //     console.log('Поръчката е изпратена:', formData, cartItems);
-    // };
-
     
     const handleCityFilterChange = (e) => {
         setCityFilter(e.target.value);
@@ -79,64 +64,12 @@ const OrderForm = () => {
         
         return fullAddress.includes(searchInput);
     });
-    
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-
-    //     const orderDetails = cartItems
-    //     .map(item => `Name: ${item.name}, Quantity: ${item.quantity}, Option: ${item.option || 'None'}`)
-    //     .join('\n');
-    
-    //     formData.city = cityFilter;
-
-    //     const emailData = {
-    //         ...formData,
-    //         order: orderDetails,
-    //     };
-
-    //     emailjs.send('service_b06m24g', 'template_mk02aun', emailData , 'PLenflNoe6IDfFa9G')
-    //         .then((response) => {
-    //             // console.log('SUCCESS!', response.status, response.text);
-    //             // alert('Вашата поръчка е изпратена успешно!');
-    //         })
-    //         .catch((err) => {
-    //             errOrder = err;
-
-    //             console.error('FAILED...', err);
-    //             alert('Грешка при изпращането на поръчката.');
-    //         });
-            
-    //     if (errOrder === "") 
-    //     {
-    //         setIsOrdered(true);
-    
-    //         // Автоматично скриване на съобщението след 3 секунди
-    //         setTimeout(() => {
-    //             setIsOrdered(false);
-    //         }, 5000);
-    //     }
-
-    //     setFormData({
-    //         firstName: '',
-    //         lastName: '',
-    //         phone: '',
-    //         address: '',
-    //         city: '',
-    //         order: '',
-    //         option: '',
-    //         note: ''
-    //     });
-
-    //     clearCart();
-    // };
-
 
     const handleRemove = (id) => {
-        removeFromCart(id); // Премахваме продукт от количката
+        removeFromCart(id); 
     };
 
     return (
-        // <div className='out-container'>
         <div className="order-form-container">
         <h2>Завършете поръчката</h2>
             <form onSubmit={handleSubmit}>
@@ -214,7 +147,6 @@ const OrderForm = () => {
                     />
                 </div>
                 
-                {/* Показваме продуктите в количката */}
                 <div className="cart-items">
                     <h3>Вашата количка</h3>
                     {cartItems.length === 0 ? (
@@ -240,7 +172,6 @@ const OrderForm = () => {
                 <button type="submit" className="submit-button">Изпрати поръчка</button>
             </form>
             
-             {/* Показване на съобщението, когато е добавено в количката */}
              {isOrdered && (
                 <div className="modal">
                     <div className="modal-content">
@@ -252,7 +183,6 @@ const OrderForm = () => {
             )}
             
         </div>
-        // </div>
     );
 };
 

@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import React, { useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import useEcontOffices from '../../hooks/useEcontOffices';  
 import useSaveOrder from "../../hooks/useSaveOrder";
-// import emailjs from 'emailjs-com';
 import './ProductDetails.css';
 import Ariel from '../Products/Ariel.png';
 import Ariel1 from '../Products/Ariel1.jpg';
@@ -68,7 +67,7 @@ const products = [
 ];
 
 const ProductDetails = () => {
-    // let errOrder = "";
+    const navigate = useNavigate();
     const { id } = useParams();
     const product = products.find(p => p.id === parseInt(id));
     const [quantity, setQuantity] = useState(1); 
@@ -142,60 +141,14 @@ const ProductDetails = () => {
         handleSubmitFastOrder(product);
     };
 
-    // const handleSubmit = (e) => {
-    //     if (product.id === 7 && !formData.option) {
-    //         alert('Моля, изберете опция преди да добавите този продукт в количката.');
-    //         return;
-    //     }
-
-    //     e.preventDefault();
-
-    //     const orderDetails = (`Продукт: ${product.name}, Количество: ${formData.quantity}` + (product.option ? `, Option: ${product.option}` : ''));
-         
-    //     formData.city = cityFilter;
-
-    //     const emailData = { ...formData, order: orderDetails };
-
-    //     emailjs.send('service_b06m24g', 'template_mk02aun', emailData, 'PLenflNoe6IDfFa9G')
-    //         .then((response) => {
-    //             // console.log('SUCCESS!', response.status, response.text);
-    //             // alert('Вашата поръчка е изпратена успешно!');
-    //         })
-    //         .catch((err) => {
-    //             errOrder = err;
-    //             console.error('FAILED...', err);
-    //             alert('Грешка при изпращането на поръчката.');
-    //         });
-        
-    //     if (errOrder === '')
-    //     {
-    //         handleCloseModal();
-    //         handleSubmitFastOrder(product);
-    //     }
-
-    //     setFormData({
-    //         firstName: '',
-    //         lastName: '',
-    //         phone: '',
-    //         address: '',
-    //         city: '',
-    //         postalCode: '',
-    //         country: '',
-    //         order: product.name,
-    //         quantity: 1,
-    //         additionalInfo: '',
-    //         option: product.option
-    //     });
-    // };
-
     const { addToCart } = useContext(CartContext); 
 
     const handleSubmitFastOrder = () =>{
         setIsOrdered(true);
 
-        // Автоматично скриване на съобщението след 3 секунди
         setTimeout(() => {
             setIsOrdered(false);
+            navigate("/"); 
         }, 5000);
     }
     
@@ -206,23 +159,20 @@ const ProductDetails = () => {
         // }
     };
 
-    // Функция за добавяне в количката и показване на съобщението
     const handleAddToCart = (product, quantity, value) => {
         // if (product.id === 7 && !value) {
         //     alert('Моля, изберете опция преди да добавите този продукт в количката.');
         //     return;
         // }
 
-        addToCart(product, quantity, value); // Извиква съществуващата функция за добавяне в количката
+        addToCart(product, quantity, value); 
 
         if (quantity > 0) {
-            // Показване на съобщението
             setIsAdded(true);
         } else if (quantity === 0) {
             cantAddZeroToCart(true);
         }
 
-        // Автоматично скриване на съобщението след 1.5 секунди
         setTimeout(() => {
             cantAddZeroToCart(false);
             setIsAdded(false);
@@ -240,7 +190,7 @@ const ProductDetails = () => {
                 slidesPerView={1}
                 navigation
                 loop
-                className="swiper-container" // Ensure this class is applied
+                className="swiper-container" 
             >
                 {product.imageUrl.map((image, index) => (
                     <SwiperSlide key={index} className="swiper-slide">
@@ -253,21 +203,18 @@ const ProductDetails = () => {
                 ))}
             </Swiper>
 
-            {/* <img src={product.imageUrl} alt={product.name} className="product-image" /> */}
             <div className="product-details">
             <h2>{product.name}</h2>
                 <p className="old-price">Стара Цена: {product.oldPrice}</p>
                 <p className="product-price">Цена: {product.price}</p>
 
-                {/* Поле за избор на бройка */}
                 <label className='product-quantity-input-label'>
-                    {/* Бройка: */}
                     <input className="product-quantity-input"
                         type="number"
                         value={quantity}
                         onChange={handleQuantityChange}
                         min="1"
-                        style={{ width: '50px', marginLeft: '0px' }} // Леко стилизиране
+                        style={{ width: '50px', marginLeft: '0px' }} 
                     />
                 </label>
                 
@@ -306,7 +253,6 @@ const ProductDetails = () => {
 
             </div>
 
-            {/* Показване на съобщението, когато е добавено в количката */}
             {isAdded && (
                 <div className="modal">
                     <div className="modal-content">
@@ -317,7 +263,6 @@ const ProductDetails = () => {
                 </div>
             )}
 
-            {/* Показване на съобщението, когато е добавено в количката */}
             {cantAddZero && (
                 <div className="modal">
                     <div className="modal-content">
@@ -328,7 +273,6 @@ const ProductDetails = () => {
                 </div>
             )}
 
-             {/* Показване на съобщението, когато е добавено в количката */}
              {isOrdered && (
                 <div className="modal">
                     <div className="modal-content">
@@ -339,7 +283,6 @@ const ProductDetails = () => {
                 </div>
             )}
             
-            {/* Модал */}
             {showModal && (
                 <div className="modal">
                     <div className="modal-content">
