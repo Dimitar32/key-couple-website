@@ -1,80 +1,17 @@
-import { useState } from 'react';
+import { useState  } from 'react';
 import React, { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import useEcontOffices from '../../hooks/useEcontOffices';  
 import useSaveOrder from "../../hooks/useSaveOrder";
+import useProductDetails from '../../hooks/UseProductsDetails';
 import './ProductDetails.css';
-import Ariel from '../Products/Ariel.png';
-import Ariel1 from '../Products/Ariel1.jpg';
-import Shrek from '../Products/Shrek.png';
-import Shrek1 from '../Products/Shrek1.jpg';
-import Rapunzel from '../Products/Rapunzel.png';
-import Rapunzel1 from '../Products/Rapunzel1.jpg';
-import LionKing from '../Products/LionKing.png';
-import LionKing1 from '../Products/LionKing1.jpg';
-import Bunny from '../Products/Bunny.png';
-import Bunny1 from '../Products/Bunny1.jpg';
-import Bella from '../Products/Bella.png';
-import Bella1 from '../Products/Bella1.jpg';
-// import Christmas1 from '../Products/Christmas1.jpg';
-// import Christmas2 from '../Products/Christmas2.jpg';
-// import Christmas3 from '../Products/Christmas3.jpg';
-// import Christmas4 from '../Products/Christmas4.jpg';
-// import Christmas5 from '../Products/Christmas5.jpg';
-// import Christmas6 from '../Products/Christmas6.jpg';
-import McQueen from '../Products/McQueen1.jpg';
-import McQueen2 from '../Products/McQueen2.jpg';
-import LadyAndTheTramp from '../Products/LadyAndTheTramp1.png';
-import LadyAndTheTramp2 from '../Products/LadyAndTheTramp2.jpg';
-import Stich from '../Products/Stich.png';
 import { CartContext } from '../contexts/CartContext'; 
-
-const products = [
-    { id: 1, name: 'Ерик и Ариел', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Ariel, Ariel1], description: `
-                        Подарете магическо докосване на връзката си с тези уникални ключодържатели за двойки, вдъхновени от незабравимите герои Ерик и Ариел. Комплектът включва два ключодържателя и поставка за тях,
-                        съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
-                        Вашата любов е уникална, затова я отпразнувайте с нещо специално!` },
-    { id: 6, name: 'Шрек и Фиона', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Shrek, Shrek1], description: `
-                        Подарете магическо докосване на връзката си с тези уникални ключодържатели за двойки, вдъхновени от незабравимите герои Шрек и Фиона. Комплектът включва два ключодържателя и поставка за тях,
-                        съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
-                        Вашата любов е уникална, затова я отпразнувайте с нещо специално!` },
-    { id: 3, name: 'Рапунцел и Флин', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Rapunzel, Rapunzel1], description: `
-                        Подарете магическо докосване на връзката си с тези уникални ключодържатели за двойки, вдъхновени от незабравимите герои Рапунцел и Флин. Комплектът включва два ключодържателя и поставка за тях,
-                        съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
-                        Вашата любов е уникална, затова я отпразнувайте с нещо специално!` },
-    { id: 2, name: 'Нала и Симба', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [LionKing, LionKing1], description: `
-                        Подарете магическо докосване на връзката си с тези уникални ключодържатели за двойки, вдъхновени от незабравимите герои Нала и Симба. Комплектът включва два ключодържателя и поставка за тях,
-                        съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
-                        Вашата любов е уникална, затова я отпразнувайте с нещо специално!` },
-    { id: 8, name: 'Бъгс и Лола', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Bunny, Bunny1], description: `
-                        Подарете магическо докосване на връзката си с тези уникални ключодържатели за двойки, вдъхновени от незабравимите герои Бъгс и Лола. Комплектът включва два ключодържателя и поставка за тях,
-                        съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
-                        Вашата любов е уникална, затова я отпразнувайте с нещо специално!` },
-    { id: 7, name: 'Бел и Звяр', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Bella, Bella1], description: `
-                        Подарете магическо докосване на връзката си с тези уникални ключодържатели за двойки, вдъхновени от незабравимите герои Бел и Звяр. Комплектът включва два ключодържателя и поставка за тях,
-                        съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
-                        Вашата любов е уникална, затова я отпразнувайте с нещо специално!` },
-    // { id: 7, name: 'KeyCouple8 Коледен комплект', oldPrice: '59.90 лв', price: '35.90 лв', imageUrl: [Christmas1, Christmas2, Christmas3, Christmas4, Christmas5, Christmas6], description: 'Коледен комплект включващ ключодържателите KeyCouple8 плюс пухкава играчка Джинджи.' },
-    { id: 5, name: 'Макуин и Сали', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [McQueen, McQueen2], description: `
-        Подарете магическо докосване на връзката си с тези уникални ключодържатели за двойки, вдъхновени от незабравимите герои Макуин и Сали. Комплектът включва два ключодържателя и поставка за тях,
-        съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
-        Вашата любов е уникална, затова я отпразнувайте с нещо специално!` },
-    { id: 4, name: 'Лейди и Скитника', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [LadyAndTheTramp, LadyAndTheTramp2], description: `
-        Подарете магическо докосване на връзката си с тези уникални ключодържатели за двойки, вдъхновени от незабравимите герои Лейди и Скитника. Комплектът включва два ключодържателя и поставка за тях,
-        съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
-        Вашата любов е уникална, затова я отпразнувайте с нещо специално!` },
-    { id: 14, name: 'Стич и Ейнджъл', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: [Stich, Stich], description: `
-        Подарете магическо докосване на връзката си с тези уникални ключодържатели за двойки, вдъхновени от незабравимите герои Стич и Ейнджъл. Комплектът включва два ключодържателя и поставка за тях,
-        съчетаващи се перфектно, за да символизират вашата любовна история. С изображенията на емблематичната двойка на красив фон, те са идеалният аксесоар за вас и вашия партньор.
-        Вашата любов е уникална, затова я отпразнувайте с нещо специално!` }
-];
 
 const ProductDetails = () => {
     const navigate = useNavigate();
     const { id } = useParams();
-    const product = products.find(p => p.id === parseInt(id));
     const [quantity, setQuantity] = useState(1); 
     
     const [isAdded, setIsAdded] = useState(false);
@@ -88,6 +25,8 @@ const ProductDetails = () => {
     const [cityFilter, setCityFilter] = useState('');
 
     const { offices } = useEcontOffices();
+
+    const { product, loading, error } = useProductDetails(id);
 
     const toggleDescription = () => {
         setIsDescriptionOpen(!isDescriptionOpen);
@@ -109,10 +48,10 @@ const ProductDetails = () => {
         city: '',
         postalCode: '',
         country: '',
-        order: product.name,
+        order: '',
         quantity: 1,
         additionalInfo: '',
-        option: product.option
+        option: ''
     });
 
     const handleChange = (e) => {
@@ -140,7 +79,7 @@ const ProductDetails = () => {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const orderItems = [{ id: product.id, name: product.name, quantity: formData.quantity, option: product.option, price: product.price }];
+        const orderItems = [{ id: product.id, name: product.productname, quantity: formData.quantity, option: product.option, price: product.price }];
         await submitOrder(formData, orderItems, cityFilter);
         handleCloseModal();
         handleSubmitFastOrder(product);
@@ -188,6 +127,16 @@ const ProductDetails = () => {
         return <h2>Продуктът не е намерен</h2>;
     }
 
+    // Display a loading message while data is being fetched
+    if (loading) {
+        return <h2>Loading product details...</h2>;
+    }
+
+    // Display an error message if there was an issue fetching data
+    if (error) {
+        return <h2>Error: {error}</h2>;
+    }
+
     return (
         <section id="products" className="product-details-section">
             <Swiper
@@ -197,10 +146,10 @@ const ProductDetails = () => {
                 loop
                 className="swiper-container" 
             >
-                {product.imageUrl.map((image, index) => (
+                {product.images.map((image, index) => (
                     <SwiperSlide key={index} className="swiper-slide">
                         <img
-                            src={image}
+                            src={image.image_url}
                             alt={`Product ${index + 1}`}
                             className="product-image"
                         />
@@ -209,7 +158,7 @@ const ProductDetails = () => {
             </Swiper>
 
             <div className="product-details">
-            <h2>{product.name}</h2>
+            <h2>{product.productname}</h2>
                 <p className="old-price">Стара Цена: {product.oldPrice}</p>
                 <p className="product-price">Цена: {product.price}</p>
 
@@ -325,7 +274,7 @@ const ProductDetails = () => {
                                     />
                                 </label>
                                 <label>
-                                    Брой {product.name} :
+                                    Брой {product.productname} :
                                     <input
                                         type="number"
                                         name="quantity"

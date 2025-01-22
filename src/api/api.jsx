@@ -1,4 +1,4 @@
-import emailjs from 'emailjs-com';
+
 
 const API_URL = "https://luminisapi.onrender.com/api";
 
@@ -17,23 +17,6 @@ export const saveOrder = async (orderData) => {
         return result;
     } catch (error) {
         console.error("❌ Error submitting order:", error);
-        throw error;
-    }
-};
-
-export const sendOrderEmail = async (formData, productDetails = null) => {
-    try {
-        let orderDetails = productDetails
-            ? `Продукт: ${productDetails.name}, Количество: ${formData.quantity}` + 
-              (productDetails.option ? `, Option: ${productDetails.option}` : '')
-            : formData.order;
-
-        const emailData = { ...formData, order: orderDetails };
-
-        await emailjs.send('service_b06m24g', 'template_mk02aun', emailData, 'mjkXxA3GKaz2EgF9X');
-        return true;
-    } catch (error) {
-        console.error("❌ Error sending email:", error);
         throw error;
     }
 };
@@ -63,3 +46,35 @@ export const fetchEcontOffices = async () => {
     }
   };
   
+// Fetch product details by ID
+export const getProductById = async (id) => {
+  try {
+      const response = await fetch(`${API_URL}/products/${id}`);
+      const result = await response.json();
+
+      if (!response.ok) {
+          throw new Error(result.message || "Грешка при зареждане на продукта.");
+      }
+      return result.product;
+  } catch (error) {
+      console.error("❌ Error fetching product details:", error);
+      throw error;
+  }
+};
+
+// Fetch all products or filter by brand
+export const getProducts = async (brand) => {
+  try {
+      const url = brand ? `${API_URL}/products?brand=${brand}` : `${API_URL}/products`;
+      const response = await fetch(url);
+
+      const result = await response.json();
+      if (!response.ok) {
+          throw new Error(result.message || "Грешка при зареждане на продуктите.");
+      }
+      return result.products;
+  } catch (error) {
+      console.error("❌ Error fetching products:", error);
+      throw error;
+  }
+};
