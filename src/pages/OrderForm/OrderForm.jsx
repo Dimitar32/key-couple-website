@@ -155,7 +155,7 @@ const OrderForm = () => {
                         <ul>
                             {cartItems.map(item => (
                                 <li key={item.id} className="cart-item">
-                                {item.productname} - {item.quantity} бр. - {item.option || ''} {(parseFloat(item.price.replace(/[^\d.-]/g, '')) * item.quantity).toFixed(2)} лв.
+                                {item.productname} - {item.quantity} бр. - {item.option || ''} {(parseFloat(item.discount_price.replace(/[^\d.-]/g, '')) * item.quantity).toFixed(2)} лв.
                                     <button 
                                         className="remove-button" 
                                         type="button" 
