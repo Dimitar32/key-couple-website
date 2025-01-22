@@ -79,7 +79,7 @@ const ProductDetails = () => {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const orderItems = [{ id: product.id, name: product.productname, quantity: formData.quantity, option: product.option, price: product.price }];
+        const orderItems = [{ id: product.id, productname: product.productname, quantity: formData.quantity, option: product.option, discount_price: product.discount_price }];
         await submitOrder(formData, orderItems, cityFilter);
         handleCloseModal();
         handleSubmitFastOrder(product);
