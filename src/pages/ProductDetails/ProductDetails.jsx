@@ -6,6 +6,7 @@ import 'swiper/swiper-bundle.css';
 import useEcontOffices from '../../hooks/useEcontOffices';  
 import useSaveOrder from "../../hooks/useSaveOrder";
 import useProductDetails from '../../hooks/UseProductsDetails';
+import useSetOptions from "../../hooks/useSetOptions";
 import './ProductDetails.css';
 import { CartContext } from '../contexts/CartContext'; 
 
@@ -27,6 +28,10 @@ const ProductDetails = () => {
     const { offices } = useEcontOffices();
 
     const { product, loading, error } = useProductDetails(id);
+
+    const { setOptions, isLoading } = useSetOptions(product?.is_set ? product.id : null);
+
+  
 
     const toggleDescription = () => {
         setIsDescriptionOpen(!isDescriptionOpen);
@@ -78,8 +83,12 @@ const ProductDetails = () => {
     const { submitOrder } = useSaveOrder();
     
     const handleSubmit = async (e) => {
+        if (product.is_set && !formData.option) {
+            alert('Моля, изберете опция преди да добавите този продукт в количката.');
+            return;
+        }
         e.preventDefault();
-        const orderItems = [{ id: product.id, productname: product.productname, quantity: formData.quantity, option: product.option, discount_price: product.discount_price }];
+        const orderItems = [{ id: product.id, productname: product.productname, quantity: formData.quantity, option: formData.option, discount_price: product.discount_price }];
         await submitOrder(formData, orderItems, cityFilter);
         handleCloseModal();
         handleSubmitFastOrder(product);
@@ -104,10 +113,10 @@ const ProductDetails = () => {
     };
 
     const handleAddToCart = (product, quantity, value) => {
-        // if (product.id === 7 && !value) {
-        //     alert('Моля, изберете опция преди да добавите този продукт в количката.');
-        //     return;
-        // }
+        if (product.is_set && !value) {
+            alert('Моля, изберете опция преди да добавите този продукт в количката.');
+            return;
+        }
 
         addToCart(product, quantity, value); 
 
@@ -172,26 +181,31 @@ const ProductDetails = () => {
                     />
                 </label>
                 
-                {/* {product.id === 7 && (
+                {product.is_set && (
                     <label className="product-options-dropdown-label">
-                        <select 
-                            className="product-options-dropdown" 
-                            value={formData.option || ''} 
-                            onChange={(e) => 
-                                setFormData({ ...formData, option: e.target.value })
-                            }
-                            required
+                    {isLoading ? (
+                        <p>Зареждане на опциите...</p>
+                    ) : error ? (
+                        <p className="error">{error}</p>
+                    ) : (
+                        <select
+                        className="product-options-dropdown"
+                        value={formData.option || ""}
+                        onChange={(e) => setFormData({ ...formData, option: e.target.value })}
+                        required
                         >
-                            <option value="" disabled>Изберете опция</option>
-                            <option value="Ариел и Ерик">Ариел и Ерик</option>
-                            <option value="Шрек и Фиона">Шрек и Фиона</option>
-                            <option value="Нала и Симба">Нала и Симба</option>
-                            <option value="Бел и Звяр">Бел и Звяр</option>
-                            <option value="Рапунцел и Флин">Рапунцел и Флин</option>
-                            <option value="Бъгс и Лола">Бъгс и Лола</option>
+                        <option value="" disabled>
+                            Изберете опция
+                        </option>
+                        {setOptions.map((option) => (
+                            <option key={option.product_id} value={option.product_id}>
+                            {option.productname}
+                            </option>
+                        ))}
                         </select>
+                    )}
                     </label>
-                )} */}
+                )}
 
                 <div className="product-buttons">
                     <button className="order-button" onClick={() => handleAddToCart(product, quantity, formData.option)}>Добави в количката</button>

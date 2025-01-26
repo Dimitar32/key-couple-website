@@ -9,14 +9,12 @@ export const CartProvider = ({ children }) => {
 
     // useEffect(() => {
     //     const savedCart = localStorage.getItem('cartItems');
-    //     // console.log('Loaded cart from localStorage:', savedCart);
     //     if (savedCart) {
     //         setCartItems(JSON.parse(savedCart));
     //     }
     // }, []);
 
     // useEffect(() => {
-    //     console.log('Saving cart to localStorage:', cartItems);
     //     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     // }, [cartItems]);
     // Зареждаме данните от Local Storage само при първоначално стартиране

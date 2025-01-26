@@ -1,6 +1,6 @@
 
 
-const API_URL = "https://luminisapi.onrender.com/api";
+const API_URL = "https://luminisapi.onrender.com/api";/*"http://localhost:5000/api""https://luminisapi.onrender.com/api";*/
 
 export const saveOrder = async (orderData) => {
     try {
@@ -16,7 +16,6 @@ export const saveOrder = async (orderData) => {
         }
         return result;
     } catch (error) {
-        console.error("❌ Error submitting order:", error);
         throw error;
     }
 };
@@ -36,11 +35,9 @@ export const fetchEcontOffices = async () => {
       if (data?.success && data.offices) {
         return data.offices;
       } else {
-        console.error("❌ No offices found:", data);
         return [];
       }
     } catch (error) {
-      console.error("❌ Error fetching Econt offices:", error);
       alert("Грешка при зареждането на офисите на Еконт.");
       return [];
     }
@@ -57,7 +54,6 @@ export const getProductById = async (id) => {
       }
       return result.product;
   } catch (error) {
-      console.error("❌ Error fetching product details:", error);
       throw error;
   }
 };
@@ -74,7 +70,20 @@ export const getProducts = async (brand) => {
       }
       return result.products;
   } catch (error) {
-      console.error("❌ Error fetching products:", error);
       throw error;
+  }
+};
+
+export const getSetOptions = async (setId) => {
+  try {
+    const response = await fetch(`${API_URL}/set-options/${setId}`);
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.message || "Грешка при зареждане на опциите за комплекта.");
+    }
+    return result; // This should return an array of set options
+  } catch (error) {
+    throw error;
   }
 };

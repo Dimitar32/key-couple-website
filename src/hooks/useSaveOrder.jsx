@@ -22,7 +22,7 @@ const useSaveOrder = () => {
                     price: parseFloat(item.discount_price.replace(/[^\d.-]/g, "")) * item.quantity
                 }))
             };
-
+            
             await saveOrder(orderData);
 
             setIsOrdered(true);
@@ -35,7 +35,7 @@ const useSaveOrder = () => {
             formData.city = cityFilter;
 
             const emailData = { ...formData, order: orderDetails };
-
+            
             emailjs.send("service_b06m24g", "template_mk02aun", emailData, "PLenflNoe6IDfFa9G")
                 .then(() => {
                     setIsOrdered(true);
@@ -43,7 +43,6 @@ const useSaveOrder = () => {
                     if (clearCart) clearCart();
                 })
                 .catch((err) => {
-                    console.error("❌ Email sending failed:", err);
                     alert("Грешка при изпращането на поръчката.");
                 });
 
@@ -55,7 +54,6 @@ const useSaveOrder = () => {
             formData.note = "";
 
         } catch (error) {
-            console.error("❌ Error submitting order:", error);
             alert(error.message);
         }
     };
