@@ -24,7 +24,9 @@ const Products = () => {
                     <div key={product.id} className="product-card">
                         <img src={primaryImage} alt={product.name} className="product-image" />
                         <div className="discount-label">
-                            <span>-28%</span>
+                            <span>
+                                {`-${((1 - product.discount_price / product.price) * 100).toFixed(0)}%`}
+                            </span>
                         </div>
                         <h3>{product.productname}</h3>
                         <p className="old-price">{product.price}лв.</p> 
